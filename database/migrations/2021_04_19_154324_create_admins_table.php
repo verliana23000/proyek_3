@@ -20,10 +20,7 @@ class CreateAdminsTable extends Migration
             $table->text('alamat');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('level', ['super_admin', 'admin_klinik']);
-
             $table->timestamps();
-
         });
     }
 

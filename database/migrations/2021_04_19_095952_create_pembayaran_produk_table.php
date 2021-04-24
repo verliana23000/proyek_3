@@ -16,12 +16,14 @@ class CreatePembayaranProdukTable extends Migration
         Schema::create('pembayaran_produk', function (Blueprint $table) {
             $table->id('id_pembayaran_produk');
             $table->unsignedBigInteger('id_pp');
+            $table->unsignedBigInteger('id_member');
             $table->bigInteger('nominal');
             $table->string('bukti_tf');
             $table->string('status');
             $table->timestamps();
 
             $table->foreign('id_pp')->references('id_pp')->on('pemesanan_produk');
+            $table->foreign('id_member')->references('id_member')->on('member');
         });
     }
 

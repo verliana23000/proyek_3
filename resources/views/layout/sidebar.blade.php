@@ -58,7 +58,7 @@
             <h6 class="collapse-header">Treatment</h6>
             <a class="collapse-item" href="{{url('/treatment')}}">Treatment</a>
             <a class="collapse-item" href="{{url('/pemesanan_treatment')}}">Pemesanan Treatment</a>
-            <a class="collapse-item" href="{{url('/pemesanan_treatment')}}">Pembayaran Produk</a>
+            <a class="collapse-item" href="{{url('/pembayaran_treatment')}}">Pembayaran Treatment</a>
 
           </div>
         </div>

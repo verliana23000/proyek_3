@@ -65,15 +65,37 @@ Route::post('addPemesanan_produk', 'PemesananProdukController@create');
 Route::put('editPemesanan_produk/{id}','PemesananProdukController@update');
 Route::delete('deletePemesanan_produk/{id}','PemesananProdukController@delete');
 
-Route::get('pemesanan_produk','PemesananProdukController@index');
+//=========================Pembayaran Produk===================================
+
+Route::get('pembayaran_produk','PembayaranProdukController@index');
 // Route::post('addPemesanan_produk', 'PemesananProdukController@create');
 // Route::put('editPemesanan_produk/{id}','PemesananProdukController@update');
-Route::delete('deletePemesanan_produk/{id}','PemesananProdukController@delete');
+Route::delete('deletePembayaran_produk/{id}','PembayaranProdukController@delete');
 
-//=========================Treatment==============================
+//=========================Treatment=============================================
 
 Route::get('treatment','TreatmentController@index');
 Route::post('addTreatment', 'TreatmentController@create');
 Route::put('editTreatment/{id}','TreatmentController@update');
 Route::delete('deleteTreatment/{id}','TreatmentController@delete');
 
+//==========================Pemesanan Treatment==================================
+
+Route::get('pemesanan_treatment','PemesananTreatmentController@index');
+// Route::post('addPemesanan_produk', 'PemesananTreatmentController@create');
+// Route::put('editPemesanan_produk/{id}','PemesananTreatmentController@update');
+Route::delete('deletePemesanan_produk/{id}','PemesananTreatmentController@delete');
+
+//===========================Pembayaran Treatment================================
+
+Route::get('pembayaran_treatment','PembayaranTreatmentController@index');
+// Route::post('addPemesanan_produk', 'PemesananProdukController@create');
+// Route::put('editPemesanan_produk/{id}','PemesananProdukController@update');
+Route::delete('deletePembayaran_treatment/{id}','PembayaranTreatmentController@delete');
+
+//===========================Antrian===================================================
+
+Route::get('antrian','AntrianController@index');
+// Route::post('addPemesanan_produk', 'PemesananProdukController@create');
+// Route::put('editPemesanan_produk/{id}','PemesananProdukController@update');
+Route::delete('deleteAntrian/{id}','AntrianController@delete');

@@ -114,7 +114,6 @@
                                 <th>No Hp</th>
                                 <th>Deskripsi</th>
                                 <th>Logo</th>
-                                <th>Detail</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -128,12 +127,12 @@
                                 <td>{{$data->deskripsi}}</td>
                                 <td><img width="150px" src="{{ url('admin/img/logo/'.$data->logo) }}"></td>
 
-                                <td>
+                                <!-- <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#detailProduk{{$data->id_klinik}}">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                </td>
+                                </td> -->
 
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -219,7 +218,7 @@
 @endforeach
    
    <!-- Modal Detail -->
-                            @foreach($datas as $klinik)
+                           <!--  @foreach($datas as $klinik)
                             <div class="modal fade" tabindex="-1" role="dialog" id="detailProduk{{$klinik->id_klinik}}" aria-hidden="true">
                                 <div class="modal-dialog modal-xl" role="document">
                                     <div class="modal-content">
@@ -254,5 +253,5 @@
                                     @endforeach
                                 </tbody>
                             </div>
-@endforeach
+@endforeach -->
 @endsection

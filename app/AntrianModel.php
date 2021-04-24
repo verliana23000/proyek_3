@@ -15,13 +15,21 @@ class AntrianModel extends Model
 	    'no_telp',
 	    'no_antrian',
 	    'waktu'
-	    ]; //field  
+	    ]; //field
+
+	public function Treatment(){
+    	return $this->belongsTo(TreatmentModel::class,'id_pt');
+        
+    }  
+
+    public function Member(){
+    	return $this->belongsTo(MemberModel::class,'id_member');
+        
+    }
 
 	public function getCreatedAtAttribute()
     {
         return Carbon::parse($this->attributes['created_at'])
             ->translatedFormat('l, d F Y H:i');
     }
-    }
-
 }
