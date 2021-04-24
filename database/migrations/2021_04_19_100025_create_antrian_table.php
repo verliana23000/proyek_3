@@ -15,15 +15,16 @@ class CreateAntrianTable extends Migration
     {
         Schema::create('antrian', function (Blueprint $table) {
             $table->id('id_antrian');
-            $table->UnsignedBigInteger('id_member');
-            $table->string('jenis_antrian');
-            $table->string('nama_member');
-            $table->string('no_telp');
             $table->string('no_antrian');
+            $table->string('nama');
+            $table->bigInteger('no_hp');
+            $table->UnsignedBigInteger('id_member');
+            $table->UnsignedBigInteger('id_treatment');
             $table->string('waktu');
             $table->timestamps();
 
             $table->foreign('id_member')->references('id_member')->on('member');
+            $table->foreign('id_treatment')->references('id_treatment')->on('treatment');
         });
     }
 

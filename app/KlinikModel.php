@@ -15,4 +15,8 @@ class KlinikModel extends Model
     'deskripsi',
     'logo'
     ]; //field 
+
+    public function produk(){
+        return $this->hasMany(ProdukModel::class,'id_produk');
+    }
 }

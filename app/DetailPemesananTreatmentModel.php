@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DetailPemesananTreatmentModel extends Model
 {
     protected $table		= 'detail_pemesanan_treatment'; //nama tabel
-    protected $primaryKey 	= 'id_detail_pt' //primary key
+    protected $primaryKey 	= 'id_detail_pt'; //primary key
     protected $fillable		= [
     	'id_pt',
     	'id_treatment',

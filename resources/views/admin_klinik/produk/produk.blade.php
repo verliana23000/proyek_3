@@ -96,8 +96,8 @@
                                             <select class="select2-single-placeholder form-control" 
                                               name="klinik" id="klinik" style="width: 100%">
                                             <option value="">Pilih Klinik</option>  
-                                            @foreach ($kliniks as $item)
-                                            <option value="{{$item->id_klinik}}">{{$item->nama_klinik}}
+                                            @foreach ($kliniks as $klinik)
+                                            <option value="{{$klinik->id_klinik}}">{{$klinik->nama_klinik}}
                                             </option>
                                             @endforeach
                                             </select>
@@ -171,7 +171,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{url('editProduk', $data->id_produk)}}" method="post">
+                    <form action="{{url('editProduk', $data->id_produk)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="modal-body">
@@ -197,7 +197,7 @@
                                     rows="2">{{$data->stok}}</textarea>
                             </div>
                             <label>Gambar</label><br>
-                            <img width="150px" src="{{ url('admin/image/gambar/'.$data->gambar) }}">
+                            <img width="150px" src="{{ url('admin/img/gambar_produk/'.$data->gambar) }}">
                             <div class="custom-file"><br>
                             <input type="file" name="gambar" id="gambar">
                             <br><label class="text-primary" for="gambar">* Ukuran Maksimal 2 Mb<br>
@@ -206,23 +206,27 @@
                             @if ($errors->has('gambar'))
                             <span class="text-danger"><p class="text-right">* {{ $errors->first('gambar') }}</p></span>
                             @endif
-                            </div>
-
-                                <label for="klinik">Klinik</label>
-                                <select class="select2-single-placeholder form-control" name="klinik" id="klinik">
-                                    @foreach ($kliniks as $item)
-                                    <option value="{{$item->id_klinik}}">{{$item->nama_klinik}}</option>
-                                    @endforeach
-                                </select>
+                            
+                            <label for="klinik">Klinik</label>
+                            <select class="select2-single-placeholder form-control" name="klinik" id="klinik" style="width: 100%">
+                            <option value="">Pilih Klinik</option>  
+                            @foreach ($datas as $item)
+                            <option value="{{$item->id_klinik}}">{{ ($data->id_klinik == $item->id_klinik)}}
+                            {{$item->nama_klinik}}</option>
+                            @endforeach
+                            </select>
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-success">Simpan</button>
                         </div>
+                            </form>
                     </div>
                 </div>
             </div>
+            </div>
         </div> 
-    </form>
+
     {{-- Akhir Modal Tambah --}}
 @endforeach
 @endsection

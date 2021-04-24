@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use App\ProdukModel;
 use App\KlinikModel;
+use DB;
 
 class ProdukController extends Controller
 {
     public function index(){
-    $kliniks 	= KlinikModel::all();
-    $datas 		= ProdukModel::all();
+
+     $datas	= DB::table('produk')
+    	->join('klinik','klinik.id_klinik', '=', 'klinik.id_klinik')
+    	->select('produk.*','klinik.*')
+    	->get();
+    $kliniks	= KlinikModel::all();
     return view('admin_klinik.produk.produk', compact('datas', 'kliniks'));
 }
 
@@ -33,7 +37,7 @@ public function create(Request $request){
 		'gambar.required'		=> 'Gambar Produk harus diisi',
 		'max'					=> 'Panjang karakter maksimal 100',
 		'gambar.max' 			=> 'Tidak boleh lebih 2 Mb',
-		'klinik' 				=> 'Nama Klinik harus diisi',
+
 
 	]);
 
@@ -47,11 +51,10 @@ public function create(Request $request){
         
 		$file = $request->file('gambar'); // menyimpan data gambar yang diupload ke variabel $file
         $nama_file = time()."_".$file->getClientOriginalName();
-        $file->move('admin/img/gambar_produk',$nama_file); // isi dengan nama folder tempat kemana file diupload
-        $data->gambar = $nama_file;
-        
-        $data->id_klinik = $request->klinik;
-        
+        $file->move('admin/img/gambar_produk/',$nama_file); // isi dengan nama folder tempat kemana file diupload
+        $data->gambar 		= $nama_file;
+        $data->id_klinik 	= $request->klinik;
+                
 	$data->save();
 	return redirect()->back()->with('success','Data berhasil ditambah');
 }
@@ -83,17 +86,19 @@ public function update($id_produk, Request $request)
         $data->jenis_produk = $request->jenis_produk;
         $data->harga_produk = $request->harga_produk;
         $data->stok 		= $request->stok;
+        $data->id_klinik 	= $request->id_klinik;
         
-		$file 				= $request->file('gambar'); 
-		// menyimpan data gambar yang diupload ke variabel $file
-
-        $nama_file 			= time()."_".$file->getClientOriginalName();
-        $file->move('admin/img/gambar_produk',$nama_file); 
-        // isi dengan nama folder tempat kemana file diupload
-
-        $data->gambar 		= $nama_file;
-        $data->id_klinik	= $request->klinik;
-
+        if (empty($request->gambar)) {
+        	$data->gambar = $data->gambar;
+        } else {
+        	unlink('admin/img/gambar_produk/'.$data->gambar);
+        	$file 				= $request->file('gambar'); 
+			// menyimpan data gambar yang diupload ke variabel $file
+	        $nama_file 			= time()."_".$file->getClientOriginalName();
+	        $file->move('admin/img/gambar_produk/',$nama_file); 
+	        // isi dengan nama folder tempat kemana file diupload
+	        $data->gambar 		= $nama_file;
+        }
         
 	$data->save();
 	return redirect()->back()->with('success','Data berhasil ditambah');

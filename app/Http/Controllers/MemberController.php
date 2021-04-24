@@ -3,14 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\Member as MemberResources;
 use App\MemberModel;
+use App\KlinikModel;
+use DB;
 
 class MemberController extends Controller
 {
     public function index(){
-    	
-    $datas = MemberModel::all();
-    return view('admin_klinik.member.member', compact('datas'));
+
+    $datas	= DB::table('member')
+    	->join('klinik','klinik.id_klinik', '=', 'klinik.id_klinik')
+    	->select('member.*','klinik.*')
+    	->get();
+    $kliniks = KlinikModel::get();
+    return view('admin_klinik.member.member', compact('datas', 'kliniks'));
 }
 
 public function create(Request $request){
@@ -19,30 +26,30 @@ public function create(Request $request){
 		'ttl'			=> 'required',
 		'jk'			=> 'required',
 		'no_hp'			=> 'required',
-		'email'			=> 'required|unique:member|string',
+		'email'			=> 'required|unique:member',
 		'password'		=> 'required',
-		//'id_klinik'		=> 'required',
+
 	],
 	[
-		'nama_member.required'	=> 'Nama Member harus diisi',
-		'ttl.required'			=> 'Alamat Member harus diisi',
-		'jk.required'			=> 'Jenis Member harus diisi',
-		'no_hp.required'		=> 'No Hp Member harus diisi',
-		'email.required'		=> 'Email Member harus diisi',
-		'password.required'		=> 'Password Member harus diisi',
-		//'id_klinik.required'	=> 'Id Klinik harus diisi',
-		'max'					=> 'Panjang karakter maksimal 100',
+		'nama_member'	=> 'Nama Member harus diisi',
+		'ttl'			=> 'Alamat Member harus diisi',
+		'jk'			=> 'Jenis Kelamin Member harus diisi',
+		'no_hp'			=> 'No Hp Member harus diisi',
+		'email'			=> 'Email Member harus diisi',
+		'password'		=> 'Password Member harus diisi',
+		'max'			=> 'Panjang karakter maksimal 100',
 
 	]);
 
 		$data = new MemberModel();
-        $data->id_member	= $request->id_member;
+
         $data->nama_member	= $request->nama_member;
         $data->ttl 			= $request->ttl;
+        $data->jk 			= $request->jk;
         $data->no_hp 		= $request->no_hp;
         $data->email 		= $request->email;
         $data->password 	= $request->password;
-        //$data->id_klinik	= $request->id_klinik;
+        $data->id_klinik	= $request->klinik;
 
         $data->save();
 		return redirect()->back()->with('success','Data berhasil ditambah');
@@ -62,26 +69,28 @@ public function update(Request $request, $id)
 		'no_hp'			=> 'required',
 		'email'			=> 'required|unique:member|string',
 		'password'		=> 'required',
-		//'id_klinik'		=> 'required',
+
 	],
 	[
-		'nama_member.required'	=> 'Nama Member harus diisi',
-		'ttl.required'			=> 'Alamat Member harus diisi',
-		'jk.required'			=> 'Jenis Member harus diisi',
-		'no_hp.required'		=> 'No Hp Member harus diisi',
-		'email.required'		=> 'Email Member harus diisi',
-		'password.required'		=> 'Password Member harus diisi',
-		//'id_klinik.required'	=> 'Id Klinik harus diisi',
-		'max'					=> 'Panjang karakter maksimal 100',
+		'nama_member'	=> 'Nama Member harus diisi',
+		'ttl'			=> 'Alamat Member harus diisi',
+		'jk'			=> 'Jenis Kelamin Member harus diisi',
+		'no_hp'			=> 'No Hp Member harus diisi',
+		'email'			=> 'Email Member harus diisi',
+		'password'		=> 'Password Member harus diisi',
+
+		'max'			=> 'Panjang karakter maksimal 100',
 	]);
 
 		$data = MemberModel::find($id_member);
-        $data->id_member	= $request->id_member;
         $data->nama_member	= $request->nama_member;
         $data->ttl 			= $request->ttl;
+        $data->jk 			= $request->jk;
         $data->no_hp 		= $request->no_hp;
         $data->email 		= $request->email;
         $data->password 	= $request->password;
+        $data->id_klinik 	= $request->klinik;
+
     $data->save();
 	return redirect()->back()->with('success','Data berhasil diubah');
 }

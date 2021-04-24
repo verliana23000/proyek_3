@@ -20,10 +20,10 @@ class CreateProdukTable extends Migration
             $table->BigInteger('harga_produk');
             $table->BigInteger('stok');
             $table->string('gambar');
-            $table->unsignedBigInteger('id_klinik');
+            $table->unsignedBigInteger('id_klinik')->nullable();
 
             $table->timestamps();
-
+            
             $table->foreign('id_klinik')->references('id_klinik')->on('klinik');
         });
     }

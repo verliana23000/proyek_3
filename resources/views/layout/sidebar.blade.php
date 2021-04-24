@@ -1,7 +1,7 @@
 <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon">
-          <img src="img/logo/logo2.png">
+          <img src="">
         </div>
         <div class="sidebar-brand-text mx-3">Dashboard Admin Klinik
         </div>
@@ -40,8 +40,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Produk</h6>
             <a class="collapse-item" href="{{url('/produk')}}">Produk</a>
-            <a class="collapse-item" href="form_advanceds.html">Pemesanan Produk</a>
-            <a class="collapse-item" href="form_advanceds.html">Pembayaran Produk</a>
+            <a class="collapse-item" href="{{url('/pemesanan_produk')}}">Pemesanan Produk</a>
+            <a class="collapse-item" href="{{url('/pembayaran_produk')}}">Pembayaran Produk</a>
 
           </div>
         </div>
@@ -52,12 +52,13 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Treatment</span>
         </a>
+        
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Treatment</h6>
-            <a class="collapse-item" href="simple-tables.html">Treatment</a>
-            <a class="collapse-item" href="datatables.html">Pemesanan Treatment</a>
-            <a class="collapse-item" href="form_advanceds.html">Pembayaran Produk</a>
+            <a class="collapse-item" href="{{url('/treatment')}}">Treatment</a>
+            <a class="collapse-item" href="{{url('/pemesanan_treatment')}}">Pemesanan Treatment</a>
+            <a class="collapse-item" href="{{url('/pemesanan_treatment')}}">Pembayaran Produk</a>
 
           </div>
         </div>

@@ -3,10 +3,10 @@
 
 <div class="container-fluid" id="container-wrapper">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dashboard Produk</h1>
+        <h1 class="h3 mb-0 text-gray-800">Dashboard Pemesanan Produk</h1>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{url('/index')}}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Dashboard Produk</li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard Pemesanan Produk</li>
         </ol>
     </div>
 
@@ -15,7 +15,7 @@
         <div class="col-lg-12">
             <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Data Produk</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Data Pemesanan Produk</h6>
                 </div>
 
                 <div class="card-header">
@@ -42,14 +42,14 @@
                     @endif
                 </div>
 
-                {{-- Modal Tambah --}}
+              <!--   {{-- Modal Tambah --}}
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <button type="button" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal"
                         data-target="#exampleModal" id="#myBtn">
                         <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                         </span>
-                        <span class="text">Tambah Data Produk</span>
+                        <span class="text">Tambah Data Pemesanan Produk</span>
                     </button>
 
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
@@ -57,7 +57,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Produk</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Pemesanan Produk</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -65,6 +65,14 @@
 
                                 <form action="addProduk" method="POST" enctype="multipart/form-data">
                                     @csrf
+
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="nama_member">Nama Member</label>
+                                            <input type="text" class="form-control" id="nama_member" name="nama_member"
+                                                placeholder="Masukan nama member">
+                                   </div>
+
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label for="nama_produk">Nama Produk</label>
@@ -77,11 +85,13 @@
                                             <input type="text" class="form-control" id="alamat" name="jenis_produk"
                                                 placeholder="Masukan jenis produk">
                                         </div>
+
                                         <div class="form-group">
                                             <label for="harga_produk">Harga</label>
                                             <input type="numeric" class="form-control" id="harga" name="harga_produk"
                                                 placeholder="Masukan harga produk"></textarea>
                                         </div>
+                                        
                                         <div class="form-group">
                                             <label for="stok">Stok</label>
                                             <input type="numeric" class="form-control" id="stok" name="stok"
@@ -92,18 +102,6 @@
                                         <input type="file" name="gambar" id="gambar">
                                         <br><label class="text-primary" for="gambar">* Ukuran maksimal 2 Mb</label>
                                       </div>
-
-                                      <div class="form-group">
-                                            <label for="klinik">Klinik</label>
-                                            <select class="select2-single-placeholder form-control" 
-                                              name="klinik" id="klinik" style="width: 100%">
-                                              <option value="">Pilih Klinik</option>  
-                                              @foreach ($kliniks as $item)
-                                                <option value="{{$item->id_klinik}}">{{$item->nama_klinik}}
-                                                </option>
-                                              @endforeach
-
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -114,22 +112,20 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                </form>
+                </div> -->
+               <!--  </form> -->
 
-                {{-- Akhir Modal Tambah --}}
+                <!-- {{-- Akhir Modal Tambah --}} -->
 
                 <div class="table-responsive p-3">
                     <table class="table align-items-center table-flush" id="dataTable">
                         <thead class="thead-light">
                             <tr>
                                 <th>No.</th>
-                                <th>Nama Produk</th>
-                                <th>Jenis Produk</th>
-                                <th>Harga</th>
-                                <th>Stok</th>
-                                <th>Gambar</th>
-                                <th>Klinik</th>
+                                <th>Nama Member</th>
+                                <th>No. Hp</th>
+                                <th>Status Pemesanan</th>
+                                <th>Metode Pembayaran</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -137,18 +133,16 @@
                             @foreach ($datas as $data)
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
-                                <td>{{$data->nama_produk}}</td>
-                                <td>{{$data->jenis_produk}}</td>
-                                <td>@rupiah($data->harga_produk)</td>
-                                <td>{{$data->stok}}</td>
-                                <td><img width="150px" src="{{url('admin/image/produk/'.$data->gambar)}}"></td>
-                                <td>{{$data->nama_klinik}}</td>                              
+                                <td>{{$data->nama_member}}</td>
+                                <td>{{$data->no_hp}}</td>
+                                <td>{{$data->status}}</td>
+                                <td>{{$data->metode_pembayaran}}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#edit-data-{{$data->id_produk}}">
-                                        <i class="fas fa-user-edit"></i>
+                                        data-target="#edit-data-{{$data->id_pp}}">
+                                        <i class="fas fa-check"></i>
                                     </button>
-                                    <form action="{{url('deleteProduk', $data->id_produk)}}" method="POST" class="d-inline">
+                                    <form action="{{url('deletePemesanan_produk', $data->id_pp)}}" method="POST" class="d-inline">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>
@@ -163,7 +157,7 @@
             </div>
         </div>
 
-        @foreach ($datas as $data)
+        <!-- @foreach ($datas as $data)
         {{-- Modal edit --}}
         <div class="modal fade" id="edit-data-{{$data->id_produk}}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -175,7 +169,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{url('editProduk', $data->id_produk)}}" method="post">
+                    <form action="{{url('editPemesanan_produk', $data->id_pp)}}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="modal-body">
@@ -230,6 +224,6 @@
             </div>
         </div> 
     </form>
-    {{-- Akhir Modal Tambah --}}
+    {{-- Akhir Modal Tambah --}} -->
 @endforeach
 @endsection

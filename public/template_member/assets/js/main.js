@@ -1,6 +1,6 @@
 /**
-* Template Name: Sailor - v4.1.0
-* Template URL: https://bootstrapmade.com/sailor-free-bootstrap-theme/
+* Template Name: Kelly - v4.1.0
+* Template URL: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
@@ -41,19 +41,17 @@
   }
 
   /**
-   * Toggle .header-scrolled class to #header when page is scrolled
+   * Scrolls to an element with header offset
    */
-  let selectHeader = select('#header')
-  if (selectHeader) {
-    const headerScrolled = () => {
-      if (window.scrollY > 100) {
-        selectHeader.classList.add('header-scrolled')
-      } else {
-        selectHeader.classList.remove('header-scrolled')
-      }
-    }
-    window.addEventListener('load', headerScrolled)
-    onscroll(document, headerScrolled)
+  const scrollto = (el) => {
+    let header = select('#header')
+    let offset = header.offsetHeight
+
+    let elementPos = select(el).offsetTop
+    window.scrollTo({
+      top: elementPos - offset,
+      behavior: 'smooth'
+    })
   }
 
   /**
@@ -92,16 +90,43 @@
   }, true)
 
   /**
-   * Hero carousel indicators
+   * Scrool with ofset on links with a class name .scrollto
    */
-  let heroCarouselIndicators = select("#hero-carousel-indicators")
-  let heroCarouselItems = select('#heroCarousel .carousel-item', true)
+  on('click', '.scrollto', function(e) {
+    if (select(this.hash)) {
+      e.preventDefault()
 
-  heroCarouselItems.forEach((item, index) => {
-    (index === 0) ?
-    heroCarouselIndicators.innerHTML += "<li data-bs-target='#heroCarousel' data-bs-slide-to='" + index + "' class='active'></li>":
-      heroCarouselIndicators.innerHTML += "<li data-bs-target='#heroCarousel' data-bs-slide-to='" + index + "'></li>"
+      let navbar = select('#navbar')
+      if (navbar.classList.contains('navbar-mobile')) {
+        navbar.classList.remove('navbar-mobile')
+        let navbarToggle = select('.mobile-nav-toggle')
+        navbarToggle.classList.toggle('bi-list')
+        navbarToggle.classList.toggle('bi-x')
+      }
+      scrollto(this.hash)
+    }
+  }, true)
+
+  /**
+   * Scroll with ofset on page load with hash links in the url
+   */
+  window.addEventListener('load', () => {
+    if (window.location.hash) {
+      if (select(window.location.hash)) {
+        scrollto(window.location.hash)
+      }
+    }
   });
+
+  /**
+   * Preloader
+   */
+  let preloader = select('#preloader');
+  if (preloader) {
+    window.addEventListener('load', () => {
+      preloader.remove()
+    });
+  }
 
   /**
    * Porfolio isotope and filter
@@ -125,6 +150,9 @@
         portfolioIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
+        portfolioIsotope.on('arrangeComplete', function() {
+          AOS.refresh()
+        });
       }, true);
     }
 
@@ -135,6 +163,15 @@
    */
   const portfolioLightbox = GLightbox({
     selector: '.portfolio-lightbox'
+  });
+
+  /**
+   * Initiate portfolio details lightbox 
+   */
+  const portfolioDetailsLightbox = GLightbox({
+    selector: '.portfolio-details-lightbox',
+    width: '90%',
+    height: '90vh'
   });
 
   /**
@@ -155,15 +192,6 @@
   });
 
   /**
-   * Initiate portfolio details lightbox 
-   */
-  const portfolioDetailsLightbox = GLightbox({
-    selector: '.portfolio-details-lightbox',
-    width: '90%',
-    height: '90vh'
-  });
-
-  /**
    * Skills animation
    */
   let skilsContent = select('.skills-content');
@@ -179,5 +207,35 @@
       }
     })
   }
+
+  /**
+   * Testimonials slider
+   */
+  new Swiper('.testimonials-slider', {
+    speed: 600,
+    loop: true,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false
+    },
+    slidesPerView: 'auto',
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    }
+  });
+
+  /**
+   * Animation on scroll
+   */
+  window.addEventListener('load', () => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+      mirror: false
+    });
+  });
 
 })()

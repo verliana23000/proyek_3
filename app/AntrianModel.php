@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AntrianModel extends Model
 {
 	protected $table		= 'antrian'; //nama tabel
-    protected $primaryKey 	= 'id_antrian' //primary key
+    protected $primaryKey 	= 'id_antrian'; //primary key
     protected $fillable		= [
 	    'id_member',
 	    'jenis_antrian',

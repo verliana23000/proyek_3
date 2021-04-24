@@ -16,15 +16,12 @@ class CreatePemesananProdukTable extends Migration
         Schema::create('pemesanan_produk', function (Blueprint $table) {
             $table->id('id_pp');
             $table->unsignedBigInteger('id_member');
-            $table->unsignedBigInteger('id_klinik');
-            $table->string('nama_produk');
-            $table->timestamp('waktu');
+            $table->timestamp('status');
             $table->integer('metode_pembayaran');
             $table->string('ket_batal');
             $table->timestamps();
             
             $table->foreign('id_member')->references('id_member')->on('member');
-            $table->foreign('id_klinik')->references('id_klinik')->on('klinik');
         });
     }
 

@@ -72,7 +72,7 @@
                                                 placeholder="Masukan nama Member">
                                         </div>
                                         <div class="form-group">
-                                            <label for="ttl">TTL</label>
+                                            <label for="ttl">Tanggal Lahir</label>
                                             <input type="date" class="form-control" id="ttl" name="ttl"
                                                 placeholder="Masukan ttl">
                                         </div>
@@ -92,7 +92,7 @@
                                         <br>
                                         <div class="form-group">
                                             <label for="no_hp">No Hp</label>
-                                            <input type="numerik" class="form-control" id="no_hp" name="no_hp"
+                                            <input type="numeric" class="form-control" id="no_hp" name="no_hp"
                                                 placeholder="Masukan No Hp"></textarea>
                                         </div>
                                         <div class="form-group">
@@ -102,9 +102,17 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password</label>
-                                            <input type="text" class="form-control" id="password" name="password"
+                                            <input type="password" class="form-control" id="password" name="password"
                                                 placeholder="Masukan Password">
                                         </div>
+                                        <label for="klinik">Klinik</label>
+                                            <select class="select2-single-placeholder form-control" name="klinik" id="klinik" style="width: 100%">
+                                            <option value="">Pilih Klinik</option>  
+                                            @foreach ($kliniks as $klinik)
+                                            <option value="{{$klinik->id_klinik}}">{{ ($klinik->nama_klinik) }}
+                                            </option>
+                                            @endforeach
+                                            </select>
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-danger"
@@ -124,11 +132,10 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nama Member</th>
-                                <th>TTL</th>
+                                <th>Tanggal Lahir</th>
                                 <th>Jenis Kelamin</th>
                                 <th>No Hp</th>
                                 <th>Email</th>
-                                <th>Password</th>
                                 <th>Klinik</th>
                                 <th>Aksi</th>
                             </tr>
@@ -142,8 +149,7 @@
                                 <td>{{$data->jk}}</td>
                                 <td>{{$data->no_hp}}</td>
                                 <td>{{$data->email}}</td>
-                                <td>{{$data->password}}</td>
-                                <td>{{$data->id_klinik}}</td>
+                                <td>{{$data->nama_klinik}}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#edit-data-{{$data->id_member}}">
@@ -176,7 +182,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{url('editadminklinik', $data->id_member)}}" method="post">
+                    <form action="{{url('editMember', $data->id_member)}}" method="post">
                         @csrf
                         @method('PUT')
                         <div class="modal-body">
@@ -187,32 +193,30 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="ttl">TTL</label>
-                                <input type="text" class="form-control" id="ttl" name="ttl" value="{{$data->ttl}}">
+                                <label for="ttl">Tanggal Lahir</label>
+                                <input type="date" class="form-control" id="ttl" name="ttl" value="{{$data->ttl}}">
                             </div>
 
                             <label>Jenis Kelamin</label>
                             <br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jk" id="jk1" value="laki-laki"
-                                    {{ ($data->jk=="laki-laki")? "checked" : "" }}>
-                                <label class="form-check-label" for="jk">Laki - Laki</label>
+                            <input class="form-check-input" type="radio" name="jk" id="jk1" value="laki-laki" {{ ($data->jk=="laki-laki")? "checked" : "" }}>
+                            <label class="form-check-label" for="jk">Laki - Laki</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jk" id="jk2" value="perempuan"
-                                    {{ ($data->jk=="perempuan")? "checked" : "" }}>
-                                <label class="form-check-label" for="jk">Perempuan</label>
+                            <input class="form-check-input" type="radio" name="jk" id="jk2" value="perempuan" {{ ($data->jk=="perempuan")? "checked" : "" }}>
+                            <label class="form-check-label" for="jk">Perempuan</label>
                             </div>
                             <br>
                             <div class="form-group">
                                 <label for="no_hp">No Hp</label>
-                                <input type="numerik" class="form-control" id="no_hp" name="no_hp" value="{{$data->no_hp}}">
+                                <input type="numeric" class="form-control" id="no_hp" name="no_hp" value="{{$data->no_hp}}">
                             </div>
 
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <textarea class="form-control" id="email" name="email"
-                                    rows="2">{{$data->email}}</textarea>
+                                rows="2">{{$data->email}}</textarea>
                             </div>
 
                             <div class="form-group">
@@ -220,7 +224,17 @@
                                 <textarea class="form-control" id="password" name="password"
                                     rows="2">{{$data->password}}</textarea>
                             </div>
-
+                            
+                            <label for="klinik">Klinik</label>
+                            <select class="select2-single-placeholder form-control" name="klinik" id="klinik" style="width: 100%">
+                            <option value="">Pilih Klinik</option>  
+                            @foreach ($kliniks as $klinik)
+                            <option value="{{$klinik->id_klinik}}">{{ ($klinik->nama_klinik) }}
+                            </option>
+                            @endforeach
+                            </select>
+                        </div>
+                        
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-success">Simpan</button>

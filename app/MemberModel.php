@@ -33,9 +33,7 @@ class MemberModel extends Model
     public function DetailPemesananProduk(){
         return $this->hasToMany(PemesananProdukModel::class,'detail_pemesanan_treatment', 'id_pt', 'id_treatment');
     }
-
-
-
+    
 
 
 }

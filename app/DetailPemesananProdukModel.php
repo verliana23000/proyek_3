@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DetailPemesananProdukModel extends Model
 {
     protected $table		= 'detail_pemesanan_produk'; //nama tabel
-    protected $primaryKey 	= 'id_detail_pp' //primary key
+    protected $primaryKey 	= 'id_detail_pp'; //primary key
     protected $fillable		= [
     'id_pp',
     'id_produk',

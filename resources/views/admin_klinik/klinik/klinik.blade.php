@@ -114,6 +114,7 @@
                                 <th>No Hp</th>
                                 <th>Deskripsi</th>
                                 <th>Logo</th>
+                                <th>Detail</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -126,11 +127,26 @@
                                 <td>{{$data->no_hp}}</td>
                                 <td>{{$data->deskripsi}}</td>
                                 <td><img width="150px" src="{{ url('admin/img/logo/'.$data->logo) }}"></td>
+
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#detailProduk{{$data->id_klinik}}">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#edit-data-{{$data->id_klinik}}">
                                         <i class="fas fa-user-edit"></i>
                                     </button>
+                                    <form action="{{url('deleteKlinik', $data->id_klinik)}}" method="POST" class="d-inline">
+
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
@@ -139,9 +155,10 @@
                 </div>
             </div>
         </div>
-
         @foreach ($datas as $data)
+
         {{-- Modal edit --}}
+
         <div class="modal fade" id="edit-data-{{$data->id_klinik}}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -169,7 +186,7 @@
 
                             <div class="form-group">
                                 <label for="no_hp">No Hp</label>
-                                <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{$data->no_hp}}">
+                                <input type="numeric" class="form-control" id="no_hp" name="no_hp" value="{{$data->no_hp}}">
                             </div>
 
                             <div class="form-group">
@@ -198,6 +215,44 @@
             </div>
         </div> 
     </form>
-    {{-- Akhir Modal Tambah --}}
+    {{-- Akhir Modal Edit --}}
+@endforeach
+   
+   <!-- Modal Detail -->
+                            @foreach($datas as $klinik)
+                            <div class="modal fade" tabindex="-1" role="dialog" id="detailProduk{{$klinik->id_klinik}}" aria-hidden="true">
+                                <div class="modal-dialog modal-xl" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">List Produk {{ $klinik->nama_klinik }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <table class="table table-bordered table-hover table-responsive-lg example1">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Produk</th>
+                                        <th>Jenis Produk</th>
+                                        <th>Harga</th>
+                                        <th>Stok</th>
+                                        <th>Gambar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($klinik->produk as $produk)
+                                    <tr>
+                                        <td scope="row">{{$loop->iteration}}</td>
+                                        <td>{{$produk->nama_produk}}</td>
+                                        <td>{{$produk->jenis_produk}}</td>
+                                        <td>{{$produk->harga_produk}}</td>
+                                        <td>{{$produk->stok}}</td>
+                                        <td><img width="150px" src="{{url('admin/img/gambar_produk/'.$data->gambar)}}"></td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </div>
 @endforeach
 @endsection

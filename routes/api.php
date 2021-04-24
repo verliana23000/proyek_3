@@ -14,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+//======================Klinik==================================
+
+Route::get('klinik','KlinikController@index');
+Route::post('addKlinik', 'KlinikController@create');
+Route::put('editKlinik/{id}','KlinikController@update');
+
+//=====================Member==================================
+
+Route::get('member','MemberController@index');
+Route::post('addMember', 'MemberController@create');
+Route::put('editMember/{id}','MemberController@update');
+Route::delete('deleteMember/{id}','MemberController@delete');
+
+

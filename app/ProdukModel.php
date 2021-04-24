@@ -15,10 +15,10 @@ class ProdukModel extends Model
     'stok',
     'gambar',
     'id_klinik',
-
+    
     ]; //field 
 
     public function Klinik(){
-        return $this->hasMany(ProdukModel::class,'id_produk');
+        return $this->belongsTo(ProdukModel::class,'id_produk');
     }
 }

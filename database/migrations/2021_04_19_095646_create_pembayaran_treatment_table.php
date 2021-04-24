@@ -16,6 +16,7 @@ class CreatePembayaranTreatmentTable extends Migration
         Schema::create('pembayaran_treatment', function (Blueprint $table) {
             $table->id('id_pembayaran_treatment');
             $table->unsignedBigInteger('id_pt');
+            $table->bigInteger('nominal');
             $table->string('bukti_tf');
             $table->string('status');
             $table->timestamps();
