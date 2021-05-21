@@ -6,14 +6,17 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Klinik as KlinikResources;
 use App\KlinikModel;
 use App\ProdukModel;
+use App\TreatmentModel;
 use DB;
 
 class KlinikController extends Controller
 {
 	public function index(){
-	$datas	= KlinikModel::with('produk')->get();
+	$datas	= KlinikModel::with('produk','treatment')->get();
     $produks = ProdukModel::get();
-    return view('admin_klinik.klinik.klinik', compact('datas', 'produks'));
+	$treatments = TreatmentModel::get();
+
+    return view('super_admin.klinik.klinik', compact('datas', 'produks','treatments'));
 	}
 
 public function create(Request $request){
@@ -50,11 +53,6 @@ public function create(Request $request){
         
 	$data->save();
 	return redirect()->back()->with('success','Data berhasil ditambah');
-}
-
-public function show($id)
-{
-    //
 }
 
 public function update($id_klinik, Request $request)
@@ -96,16 +94,4 @@ public function update($id_klinik, Request $request)
 	$data->save();
 	return redirect()->back()->with('success','Data berhasil ditambah');
 }
-
-public function delete($id_klinik)
-    {
-        $data = KlinikModel::findOrFail($id_klinik);
-        try {
-            $data->delete();
-            return redirect()->back()->with('success', 'Data berhasil dihapus');
-        } catch (\Throwable $th) {
-
-            return redirect()->back()->with('error', 'Data gagal dihapus');
-        }
-    }
 }

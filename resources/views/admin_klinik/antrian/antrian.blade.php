@@ -63,20 +63,18 @@
                                 <td>{{$data->nama_treatment}}</td>
                                 <td>{{$data->waktu}}</td>
                                 <td>
-                                    <form action="{{url('deleteAntrian', $data->id_antrian)}}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </td>
+                                <form action="{{url('deleteAntrian', $data->id_antrian)}}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
                             </tr>
-                        </tbody>
-                    </div>
+                        @endforeach
+                    </tbody>
                 </thead>
             </table>
         </div>
-    </div>
-</div>
-@endforeach
 @endsection

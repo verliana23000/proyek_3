@@ -14,11 +14,9 @@ class TreatmentController extends Controller
     	->join('klinik','klinik.id_klinik', '=', 'klinik.id_klinik')
     	->select('treatment.*','klinik.*')
     	->get();
-    return view('admin_klinik.treatment.treatment', compact('datas'))->with('i');
-
+		
     $kliniks	= KlinikModel::all();
-    $datas 		= TreatmentModel::all();
-    return view('admin_klinik.treatment.treatment', compact('datas'));
+    return view('admin_klinik.treatment.treatment', compact('datas','kliniks'));
 
 }
 
@@ -53,7 +51,7 @@ public function create(Request $request){
         
 		$file = $request->file('gambar'); // menyimpan data gambar yang diupload ke variabel $file
         $nama_file = time()."_".$file->getClientOriginalName();
-        $file->move('admin/img/gambar_produk/',$nama_file); // isi dengan nama folder tempat kemana file diupload
+        $file->move('admin/img/gambar_produk/gambar_treatment/',$nama_file); // isi dengan nama folder tempat kemana file diupload
         $data->gambar 		= $nama_file;
         $data->id_klinik 	= $request->klinik;
                 
@@ -68,16 +66,16 @@ public function update($id_produk, Request $request)
 		'nama_treatment'	=> 'required',
 		'jenis_treatment'	=> 'required',
 		'harga_treatment'	=> 'required',
-		'gambar'		=> 'required|max:2048',
+		'gambar'			=> 'required|max:2048',
 
 	],
 	[
 		'nama_treatment.required'	=> 'Nama Produk harus diisi',
 		'jenis_treatment.required'	=> 'Jenid Produk harus diisi',
-		'harga_treatment.regex'	=> 'Harga Produk harus diisi',
-		'gambar.required'		=> 'Gambar Produk harus diisi',
-		'max'					=> 'Panjang karakter maksimal 100',
-		'gambar.max' 			=> 'Tidak boleh lebih 2 Mb',
+		'harga_treatment.regex'		=> 'Harga Produk harus diisi',
+		'gambar.required'			=> 'Gambar Produk harus diisi',
+		'max'						=> 'Panjang karakter maksimal 100',
+		'gambar.max' 				=> 'Tidak boleh lebih 2 Mb',
 
 	]);
 
@@ -89,11 +87,11 @@ public function update($id_produk, Request $request)
         if (empty($request->gambar)) {
         	$data->gambar = $data->gambar;
         } else {
-        	unlink('admin/img/gambar_produk/'.$nama_file['gambar']);
+        	unlink('admin/img/gambar_produk/gambar_treatment/'.$nama_file['gambar']);
         	$file 				= $request->file('gambar'); 
 			// menyimpan data gambar yang diupload ke variabel $file
 	        $nama_file 			= time()."_".$file->getClientOriginalName();
-	        $file->move('admin/img/gambar_produk/',$nama_file); 
+	        $file->move('admin/img/gambar_produk/gambar_treatment/',$nama_file); 
 	        // isi dengan nama folder tempat kemana file diupload
 	        $data->gambar 		= $nama_file;
         }

@@ -13,89 +13,93 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//========================= MEMBER ==========================
-
-Route::get('home_member', function () {
-    return view('/home_member');
+Route::get('produk_member', function () {
+    return view('produk_member');
 });
 
-//========================= ADMIN ============================
+Route::get('treatment_member', function () {
+    return view('treatment_member');
+});
+
+Route::get('daftar', function () {
+    return view('daftar');
+});
+
+Route::get('super_index', function () {
+    return view('super_admin/super_index');
+});
+
+Route::get('home_member', function () {
+    return view('home_member');
+});
 
 Route::get('index', function () {
     return view('admin_klinik/index');
 });
 
 
-Route::get('produk', function () {
-    return view('admin_klinik/produk/produk');
-});
-
-Route::get('treatment', function () {
-    return view('admin_klinik/treatment/treatment');
-});
-
-//========================Klinik==================================
+//======================= Super Admin ==================================
+Route::get('/super_admin/loginadmin', 'LoginAdminController@login');
+Route::get('/super_admin/super_index', 'LoginAdminController@index');
+Route::post('/super_admin/loginPost', 'LoginAdminController@loginPost');
+Route::get('/super_admin/logout', 'LoginAdminController@logout');
 
 Route::get('klinik','KlinikController@index');
 Route::post('addKlinik', 'KlinikController@create');
 Route::put('editKlinik/{id}','KlinikController@update');
-Route::delete('deleteKlinik/{id}','KlinikController@delete');
 
+//========================Admin Klinik==================================
 
+Route::get('member','CrudMemberController@index');
+Route::get('addMember','CrudMemberController@create');
+Route::get('editMember(id)','CrudMemberController@update');
 
-//========================Member=================================
-
-
-Route::get('member','MemberController@index');
-Route::post('addMember', 'MemberController@create');
-Route::put('editMember/{id}','MemberController@update');
-Route::delete('deleteMember/{id}','MemberController@delete');
-
-//=========================Produk=================================
 
 Route::get('produk','ProdukController@index');
 Route::post('addProduk', 'ProdukController@create');
 Route::put('editProduk/{id}','ProdukController@update');
 Route::delete('deleteProduk/{id}','ProdukController@delete');
 
-//=========================Pemesanan Produk========================
 
 Route::get('pemesanan_produk','PemesananProdukController@index');
 Route::post('addPemesanan_produk', 'PemesananProdukController@create');
 Route::put('editPemesanan_produk/{id}','PemesananProdukController@update');
 Route::delete('deletePemesanan_produk/{id}','PemesananProdukController@delete');
 
-//=========================Pembayaran Produk===================================
+
 
 Route::get('pembayaran_produk','PembayaranProdukController@index');
-// Route::post('addPemesanan_produk', 'PemesananProdukController@create');
-// Route::put('editPemesanan_produk/{id}','PemesananProdukController@update');
 Route::delete('deletePembayaran_produk/{id}','PembayaranProdukController@delete');
 
-//=========================Treatment=============================================
+
 
 Route::get('treatment','TreatmentController@index');
 Route::post('addTreatment', 'TreatmentController@create');
 Route::put('editTreatment/{id}','TreatmentController@update');
 Route::delete('deleteTreatment/{id}','TreatmentController@delete');
 
-//==========================Pemesanan Treatment==================================
+
 
 Route::get('pemesanan_treatment','PemesananTreatmentController@index');
-// Route::post('addPemesanan_produk', 'PemesananTreatmentController@create');
-// Route::put('editPemesanan_produk/{id}','PemesananTreatmentController@update');
 Route::delete('deletePemesanan_produk/{id}','PemesananTreatmentController@delete');
 
-//===========================Pembayaran Treatment================================
+
 
 Route::get('pembayaran_treatment','PembayaranTreatmentController@index');
-// Route::post('addPemesanan_produk', 'PemesananProdukController@create');
-// Route::put('editPemesanan_produk/{id}','PemesananProdukController@update');
 Route::delete('deletePembayaran_treatment/{id}','PembayaranTreatmentController@delete');
 
-//===========================Antrian===================================================
+
 
 Route::get('antrian','AntrianController@index');
-// Route::post('addPemesanan_produk', 'PemesananProdukController@create');
-// Route::put('editPemesanan_produk/{id}','PemesananProdukController@update');
 Route::delete('deleteAntrian/{id}','AntrianController@delete');
+
+
+//================================ Member ============================================
+Route::get('Member/DashboardMember', 'MemberController@index');
+
+Route::get('/produk_member', 'PemesananProdukController@tampilProduk');
+Route::get('/detailProduk(id_produk)', 'PemesananProdukController@tampilDetailProduk');
+Route::get('/treatment_member', 'PemesananTreatmentController@tampilTreatment');
+Route::get('/detailTreatment(id_treatment)', 'PemesananProdukController@tampilDetailTreatment');
+Route::post('/registerMemberPost', 'MemberController@registerMemberPost');
+Route::get('/logoutMember', 'MemberController@logoutMember');

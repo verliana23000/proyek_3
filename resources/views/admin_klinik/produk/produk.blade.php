@@ -183,7 +183,7 @@
 
                             <div class="form-group">
                                 <label for="jenis_produk">Jenis Produk</label>
-                                <input type="text" class="form-control" id="jenis_produk" name="jenis_produk" value="{{$data->jenis_produk}}">
+                                <input type="text" class="form-control" id="jenis_produk" name="jenis_produk" value="{{$data->jenis_produk}}" readonly>
                             </div>
 
                             <div class="form-group">
@@ -207,14 +207,11 @@
                             <span class="text-danger"><p class="text-right">* {{ $errors->first('gambar') }}</p></span>
                             @endif
                             
-                            <label for="klinik">Klinik</label>
-                            <select class="select2-single-placeholder form-control" name="klinik" id="klinik" style="width: 100%">
-                            <option value="">Pilih Klinik</option>  
-                            @foreach ($datas as $item)
-                            <option value="{{$item->id_klinik}}">{{ ($data->id_klinik == $item->id_klinik)}}
-                            {{$item->nama_klinik}}</option>
-                            @endforeach
-                            </select>
+                            <div class="form-group">
+                                <label for="klinik">Nama Klinik</label>
+                                <input type="text" class="form-control" id="klinik" name="klinik"
+                                    value="{{$data->nama_klinik}}" readonly>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
@@ -227,6 +224,6 @@
             </div>
         </div> 
 
-    {{-- Akhir Modal Tambah --}}
+    {{-- Akhir Modal Edit --}}
 @endforeach
 @endsection

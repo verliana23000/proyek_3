@@ -89,7 +89,7 @@
             <div class="btn-group">
             <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
             <img width="42" class="rounded-circle" src="{{ url('admin/assets/images/avatars/'.Session::get('foto')) }}" alt="">
-            <b>{{Session::get('nama')}}</b>
+            <b>{{Session::get('nama_')}}</b>
             <i class="fa fa-angle-down ml-2 opacity-8"></i>
             </a>
             <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">

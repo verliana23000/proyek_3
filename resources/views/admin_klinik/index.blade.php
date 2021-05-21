@@ -36,8 +36,7 @@
   <div class="card mb-6 widget-content bg-midnight-bloom">
   <div class="widget-content-wrapper text-black">
   <div class="widget-content-left">
-  <div class="widget-heading">Data Klinik</div>
-  <div class="widget-subheading">Klinik</div>
+
   </div>
 
   <div class="widget-content-right">

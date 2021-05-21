@@ -14,7 +14,6 @@ class AdminsModel extends Model
     	'alamat', 
     	'email',
     	'password',
-    	'level',
     ]; //field 
     
 }

@@ -15,8 +15,8 @@ class DetailPemesananTreatmentModel extends Model
     	'total'
     	]; //field 
 
-    public function Produk(){
-    	return $this->belongsTo(ProdukModel::class, 'id_produk');
+    public function Treatment(){
+    	return $this->belongsTo(TreatmentModel::class, 'id_treatment');
     }
 
     public function PemesananTreatment(){

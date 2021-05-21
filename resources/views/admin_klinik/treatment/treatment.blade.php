@@ -91,8 +91,8 @@
                                             <select class="select2-single-placeholder form-control" 
                                               name="klinik" id="klinik" style="width: 100%">
                                             <option value="">Pilih Klinik</option>  
-                                            @foreach ($datas as $item)
-                                            <option value="{{$item->id_klinik}}">{{$item->nama_klinik}}
+                                            @foreach ($kliniks as $klinik)
+                                            <option value="{{$klinik->id_klinik}}">{{$klinik->nama_klinik}}
                                             </option>
                                             @endforeach
                                             </select>
@@ -101,6 +101,7 @@
                                         <button type="button" class="btn btn-outline-danger"
                                             data-dismiss="modal">Tutup</button>
                                         <button type="submit" class="btn btn-success">Simpan</button>
+                                    </div>
                                     </div>
                             </div>
                         </div>
@@ -130,7 +131,7 @@
                                 <td>{{$data->nama_treatment}}</td>
                                 <td>{{$data->jenis_treatment}}</td>
                                 <td>@rupiah($data->harga_treatment)</td>
-                                <td><img width="150px" src="{{url('admin/img/gambar_treatment/'.$data->gambar)}}"></td>
+                                <td><img width="150px" src="{{url('admin/img/gambar_produk/gambar_treatment/'.$data->gambar)}}"></td>
                                 <td>{{$data->nama_klinik}}</td>                              
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -178,7 +179,7 @@
 
                             <div class="form-group">
                                 <label for="jenis_treatment">Jenis Treatment</label>
-                                <input type="text" class="form-control" id="jenis_treatment" name="jenis_treatment" value="{{$data->jenis_treatment}}">
+                                <input type="text" class="form-control" id="jenis_treatment" name="jenis_treatment" value="{{$data->jenis_treatment}}" readonly>
                             </div>
 
                             <div class="form-group">
@@ -194,15 +195,11 @@
                             * Dikosongkan jika tidak dirubah</label>
                              </div>
 
-
-                            <label for="klinik">Klinik</label>
-                            <select class="select2-single-placeholder form-control" name="klinik" id="klinik" style="width: 100%">
-                            <option value="">Pilih Klinik</option>  
-                            @foreach ($datas as $item)
-                            <option value="{{$item->id_klinik}}">{{ ($data->id_klinik == $item->id_klinik)}}
-                            {{$item->nama_klinik}}</option>
-                            @endforeach
-                            </select>
+                            <div class="form-group">
+                                <label for="klinik">Klinik</label>
+                                <input type="text" class="form-control" id="klinik" name="klinik"
+                                    value="{{$data->nama_klinik}}" readonly>
+                            </div>
                         </div>
                         
                         <div class="modal-footer">

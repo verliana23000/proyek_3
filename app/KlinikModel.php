@@ -19,4 +19,8 @@ class KlinikModel extends Model
     public function produk(){
         return $this->hasMany(ProdukModel::class,'id_produk');
     }
+
+    public function treatment(){
+        return $this->hasMany(TreatmentModel::class,'id_treatment');
+    }
 }

@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="{{asset('admin/img/logo/logo.png')}}" rel="icon">
-  <title>Dashboard Admin Klinik</title>
+  <title>Dashboard Super Admin</title>
   <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('admin/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('admin/css/ruang-admin.min.css')}}" rel="stylesheet">
@@ -17,12 +17,12 @@
 <body id="page-top">
   <div id="wrapper">
     <!-- Sidebar -->
-    @include('layout.sidebar')
+    @include('layout.asset_super_admin.sidebar')
     <!-- Sidebar -->
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
         <!-- TopBar -->
-       @include('layout.header')
+       @include('layout.asset_super_admin.header')
         <!-- Topbar -->
 
         <!-- Container Fluid-->

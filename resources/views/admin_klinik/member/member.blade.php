@@ -5,7 +5,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard Member</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{url('/index')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{url('/home_admin')}}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Dashboard Member</li>
         </ol>
     </div>
@@ -151,10 +151,6 @@
                                 <td>{{$data->email}}</td>
                                 <td>{{$data->nama_klinik}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#edit-data-{{$data->id_member}}">
-                                        <i class="fas fa-user-edit"></i>
-                                    </button>
                                     <form action="{{url('deleteMember', $data->id_member)}}" method="POST" class="d-inline">
                                         @csrf
                                         @method('delete')
@@ -169,81 +165,4 @@
                 </div>
             </div>
         </div>
-
-        @foreach ($datas as $data)
-        {{-- Modal edit --}}
-        <div class="modal fade" id="edit-data-{{$data->id_member}}" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Data Member</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action="{{url('editMember', $data->id_member)}}" method="post">
-                        @csrf
-                        @method('PUT')
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="nama_member">Nama Member</label>
-                                <input type="text" class="form-control" id="nama_member" name="nama_member"
-                                    value="{{$data->nama_member}}" readonly>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="ttl">Tanggal Lahir</label>
-                                <input type="date" class="form-control" id="ttl" name="ttl" value="{{$data->ttl}}">
-                            </div>
-
-                            <label>Jenis Kelamin</label>
-                            <br>
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="jk" id="jk1" value="laki-laki" {{ ($data->jk=="laki-laki")? "checked" : "" }}>
-                            <label class="form-check-label" for="jk">Laki - Laki</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="jk" id="jk2" value="perempuan" {{ ($data->jk=="perempuan")? "checked" : "" }}>
-                            <label class="form-check-label" for="jk">Perempuan</label>
-                            </div>
-                            <br>
-                            <div class="form-group">
-                                <label for="no_hp">No Hp</label>
-                                <input type="numeric" class="form-control" id="no_hp" name="no_hp" value="{{$data->no_hp}}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <textarea class="form-control" id="email" name="email"
-                                rows="2">{{$data->email}}</textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <textarea class="form-control" id="password" name="password"
-                                    rows="2">{{$data->password}}</textarea>
-                            </div>
-                            
-                            <label for="klinik">Klinik</label>
-                            <select class="select2-single-placeholder form-control" name="klinik" id="klinik" style="width: 100%">
-                            <option value="">Pilih Klinik</option>  
-                            @foreach ($kliniks as $klinik)
-                            <option value="{{$klinik->id_klinik}}">{{ ($klinik->nama_klinik) }}
-                            </option>
-                            @endforeach
-                            </select>
-                        </div>
-                        
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-success">Simpan</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>   
-    </form>
-    {{-- Akhir Modal Tambah --}}
-@endforeach
 @endsection
