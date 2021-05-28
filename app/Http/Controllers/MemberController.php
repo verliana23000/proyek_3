@@ -6,43 +6,45 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Member as MemberResources;
 use App\MemberModel;
 use App\KlinikModel;
-use DB;
 use Hash;
 use Session;
-use Alert;
 
 class MemberController extends Controller{
 	
 public function index(){
-    return view('Member/DashboardMember');
+	if(!Session::get('login')){
+		return redirect('Member/DashboardMember');
+	}
+	else{
+		return view('home_member');
+	}
 }
 
-public function loginMemberPost(Request $request){
+public function loginMemberPost  (Request $request){
 	$email		= $request->email;
 	$password	= $request->password;
 
-	$data = MemberModel::where('email,$email')->first();
+	$data = MemberModel::where('email',$email)->first();
 	if($data){
 		if(Hash::check($password,$data->password)){
-			Session::put('nama',$data->nama_member);
 			Session::put('email',$data->email);
+			Session::put('id_member',$data->id_member);
 			Session::put('loginMemberPost',TRUE);
-		return redirect('Member/DashboardMember');
+		return redirect('member/DashboardMember');
 	} 
 	else {
-		alert()->error('Email atau Password Salah', 'Error');
-		return redirect('home_member');
+		
+		return 'salah';
 	}
 }
 	else {
-		alert()->error('Email atau Password Salah', 'Error');
-		return redirect('home_member');
+		return 'salah juga';
+		
 	}
 }
 
 public function logoutMember(){
 	Session::flush();
-	alert()->info('Kamu Sudah Logout', 'Logout');
 	return redirect('home_member');
 }
 
@@ -77,7 +79,6 @@ public function registerMemberPost(Request $request){
 	$data->password 	= bcrypt($request->password);
 
 	$data->save();
-	alert()->succes('Kamu Berhasil Daftar');
 	return redirect('home_member');
 
 	}

@@ -114,6 +114,13 @@
                             <td width="15px">:</td>
                             <td>{{$produks->nama_produk}}</td>
                         </tr>
+                      @foreach ($kliniks as $klinik)
+                        <tr>
+                            <td><strong>Nama Klinik</strong></td>
+                            <td width="15px">:</td>
+                            <td>{{$klinik->nama_klinik}}</td>
+                        </tr>
+                      @endforeach
                         <tr>
                             <td><strong>Stok</strong> </td>
                             <td width="15px">:</td>
@@ -141,7 +148,6 @@
                             <a href="{{ url('home_member') }}" class="button-contactFrom btn_2"><i class="fas fa-arrow-left"></i> Kembali</a>
                                 <td width="15px"></td>
                                 <td>
-
                                     <button class="btn btn-danger" data-toggle="modal" data-target="#login">
                                     Checkout</button>
                                 </td>

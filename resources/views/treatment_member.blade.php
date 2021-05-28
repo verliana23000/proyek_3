@@ -49,15 +49,15 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="{{'/home_member'}}">E-Beauty</a></h1>
+      <h1 class="logo me-auto"><a href="{{'/home_member'}}" style="color: #b4ceff">E-Beauty</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="{{'/home_member'}}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{{'/home_member'}}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{url('/produk_member')}}">Produk</a></li>
-          <li><a class="nav-link scrollto" href="{{url('/treatment_member')}}">Treatment</a></li>        
+          <li><a class="nav-link scrollto active" href="{{url('/treatment_member')}}">Treatment</a></li>        
         </ul>
       </nav><!-- .navbar -->
 
@@ -82,16 +82,19 @@
                 alt="Image" width="250px" height="250px"></center>
               <p class="px-3 mb-4 mt-3">
                     <span style="color: black">{{$treatment->nama_treatment}}</span> <br>
+                    @foreach ($kliniks as $klinik)
+                    <span style="color: black"> {{ ($klinik->nama_klinik) }}
+                    </span>
+                    @endforeach<br>
                     <span style="color: green">Rp. {{$treatment->harga_treatment}}</span> <br>
                 <center>
-                        <a href="{{url('/DetailPemesananProduk'.$treatment->id_treatment)}}" class="btn btn-outline-success py-1 px-3" >
+                        <a href="{{url('detailTreatment'.$treatment->id_treatment)}}" class="btn btn-outline-success py-1 px-3" >
                         Pesan Sekarang</a>
                 </center>
               </p>
             </div>
         </div>
             @endforeach
-
 
           </div>
         </div>
@@ -102,22 +105,6 @@
     </section>
     <!-- End About Us Section -->
 
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <div class="social-links">
-      </div>
-      <div class="copyright">
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/green-free-one-page-bootstrap-template/ -->
-      </div>
-    </div>
-  </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

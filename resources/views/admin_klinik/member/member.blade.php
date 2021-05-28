@@ -63,7 +63,7 @@
                                     </button>
                                 </div>
 
-                                <form action="addMember" method="POST">
+                                <form action="/loginMemberPost" method="POST">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">

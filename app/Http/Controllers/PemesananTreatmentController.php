@@ -13,11 +13,13 @@ class PemesananTreatmentController extends Controller
 {
     public function tampilTreatment(){
         $treatments = TreatmentModel:: all();
-        return view('treatment_member', compact('treatments'));
+        $kliniks    = KlinikModel::get();
+        return view('treatment_member', compact('treatments', 'kliniks'));
     }
 
     public function tampilDetailTreatment($id_treatment){
-		$treatments    = ProdukModel::where('id_treatment', $id_treatment)->first();
-		return view('detailTreatment', compact('treatments'));
+		$treatments     = TreatmentModel::where('id_treatment', $id_treatment)->first();
+		$kliniks        = KlinikModel::get();
+        return view('detailTreatment', compact('treatments','kliniks'));
 	}
 }

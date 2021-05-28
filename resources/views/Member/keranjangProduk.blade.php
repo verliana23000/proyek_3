@@ -97,11 +97,12 @@
                         <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nomor Pesanan</th>
-                            <th>Tanggal Pembelian</th>
-                            <th>Metode Pembayaran</th>
-                            <th>Status</th>
-                            <th>Detail</th>
+                            <th>Foto</th>
+                            <th>Nama Produk</th>
+                            <th>Jumlah</th>
+                            <th>Harga</th>
+                            <th>Total</th>
+                            <th><center>Action</center></th>
                         </tr>
                         </thead>
                         <tbody>

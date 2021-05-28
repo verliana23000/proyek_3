@@ -97,49 +97,29 @@
                         <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nomor Pesanan</th>
-                            <th>Tanggal Pembelian</th>
-                            <th>Metode Pembayaran</th>
-                            <th>Status</th>
-                            <th>Detail</th>
+                            <th><center>Foto</center></th>
+                            <th>Nama Obat</th>
+                            <th>Jumlah Beli</th>
+                            <th>Harga</th>
+                            <th>Jumlah Harga</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
                             $no = 1;
                         ?>
-                        @foreach($pemesanan as $pemesanan)
+                        @foreach($pemesanan_detail as $pemesanan_detail)
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $pemesanan->id_pemesanan }}</td>
-                                <td>{{ $pemesanan->waktu}}</td>
+                            <td>{{ $no++ }}</td>
                                 <td>
-                                    @if($pemesanan->metode_pembayaran == 1)
-                                    <span>Transfer</span>
-                                    @else
-                                    <span>Bayar Ditempat</span>
-                                    @endif
+                                    <img src="{{ url('admin/img/gambar_produk/'.$pemesanan_detail->produk->gambar) }}" style="width : 100px;">
                                 </td>
-                                <td>
-                                    @if($pemesanan->status == 1)
-                                    <span class="badge badge-warning">Sudah Pesan & Menunggu Pembayaran</span>
-                                    @elseif($pemesanan->status == 2)
-                                    <span class="badge text-white" style="background-color: blue">Menunggu Konfirmasi</span>
-                                    @elseif($pemesanan->status == 3)
-                                    <span class="badge text-white" style="background-color: #3f6ad8">Menunggu di ambil</span>
-                                    @elseif($pemesanan->status == 4)
-                                    <span class="badge badge-success"> Selesai</span>
-                                    @else
-                                    <span class="badge badge-danger"> Dibatalkan</i></span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{ url('riwayat')}}/{{ $pemesanan->id_pp}}" class="btn btn-primary"><i class="fa fa-info"></i> Detail</a>
-                                </td>
+                                <td>{{$pemesanan_detail->produk->nama_produk}}</td>
+                                <td>{{$pemesanan_detail->jumlah}}</td>
+                                <td>Rp.{{number_format($pemesanan_detail->produk->harga)}}</td>
+                                <td>Rp.{{number_format($pemesanan_detail->total)}}</td>
                             </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                        @endforeach
             </div>
         </div>
     </div>

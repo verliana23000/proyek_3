@@ -14,7 +14,7 @@
   <link href="{{('template_member/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="{{('template_member/https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i')}}" rel="stylesheet">
+    <link href="{{('template_member/https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{url('fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('style.css')}}">
 
@@ -28,13 +28,8 @@
 
   <!-- Template Main CSS File -->
   <link href="{{('template_member/assets/css/style.css')}}" rel="stylesheet">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-  <!-- =======================================================
-  * Template Name: Green - v4.1.0
-  * Template URL: https://bootstrapmade.com/green-free-one-page-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -49,15 +44,61 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="{{url('/home_member')}}">E-Beauty</a></h1>
+      <h1 class="logo me-auto"><a href="{{url('/home_member')}}" style="color: #b4ceff">E-Beauty</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="{{'/home_member'}}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{url('/produk_member')}}">Produk</a></li>
           <li><a class="nav-link scrollto" href="{{url('/treatment_member')}}">Treatment</a></li>
-          <li><a><button class="btn btn-outline-success py-1 px-3" data-bs-toggle="modal" data-bs-target="#login" >Login</button></a></li>
+          <li><a><button class="btn btn-outline-info py-1 px-3" data-bs-toggle="modal" data-bs-target="#login" >Login</button></a></li>
 
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">LOGIN </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      @if(\Session::has('alert'))
+                <div class="alert alert-danger">
+                    <div>{{Session::get('alert')}}</div>
+                </div>
+            @endif
+            @if(\Session::has('alert-success'))
+                <div class="alert alert-success">
+                    <div>{{Session::get('alert-success')}}</div>
+                </div>
+            @endif
+                  <div class="modal-body">
+                  <form action="{{ url('/loginMemberPost') }}" method="post">
+                  {{ csrf_field() }}
+                    <div class="form-group input-rounded">
+                    <label>Email</label>
+                      <input type="email" class="form-control" placeholder="Masukkan Email" name="email" />
+                    </div><br>
+
+                    <div class="form-group input-rounded">
+                    <label> Password </label>
+                      <input type="password" class="form-control" placeholder="Masukkan Password" name="password" />
+                    </div><br>
+
+                    <div class="form-inline">
+                      <div class="checkbox">
+                        <label> Belum punya akun ? <button type="button" class="btn btn-link">Buat Akun Baru</button>
+                        </label> 
+                      </div>
+                  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>|
+        <input id="submit-btn" type="submit" name="submit" value="LOGIN" />
+
+      </div>
+    </div>
+  </div>
+</div>
         </div>
     </ul>
     </nav>
@@ -119,7 +160,6 @@
 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
   <!-- Vendor JS Files -->
   <script src="{{('template_member/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{('template_member/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>

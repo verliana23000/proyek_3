@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('member/DashboardMember', function () {
+    return view('member/DashboardMember');
+});
 
 Route::get('produk_member', function () {
     return view('produk_member');
@@ -29,8 +32,8 @@ Route::get('super_index', function () {
     return view('super_admin/super_index');
 });
 
-Route::get('home_member', function () {
-    return view('home_member');
+Route::get('/', function () {
+    return view('/');
 });
 
 Route::get('index', function () {
@@ -49,6 +52,13 @@ Route::post('addKlinik', 'KlinikController@create');
 Route::put('editKlinik/{id}','KlinikController@update');
 
 //========================Admin Klinik==================================
+
+Route::get('/admin_klinik/loginadmin', 'LoginAdminController@login');
+Route::get('/index', 'LoginAdminController@index');
+Route::post('/loginPost', 'LoginAdminController@loginPost');
+Route::get('logout', 'LoginAdminController@logout');
+
+
 
 Route::get('member','CrudMemberController@index');
 Route::get('addMember','CrudMemberController@create');
@@ -95,11 +105,18 @@ Route::delete('deleteAntrian/{id}','AntrianController@delete');
 
 
 //================================ Member ============================================
-Route::get('Member/DashboardMember', 'MemberController@index');
-
-Route::get('/produk_member', 'PemesananProdukController@tampilProduk');
-Route::get('/detailProduk(id_produk)', 'PemesananProdukController@tampilDetailProduk');
-Route::get('/treatment_member', 'PemesananTreatmentController@tampilTreatment');
-Route::get('/detailTreatment(id_treatment)', 'PemesananProdukController@tampilDetailTreatment');
-Route::post('/registerMemberPost', 'MemberController@registerMemberPost');
+Route::get('member/DashboardMember', 'MemberController@index');
+Route::get('/index', 'MemberController@loginMember');
+Route::post('loginMemberPost', 'MemberController@loginMemberPost');
+Route::post('registerMemberPost', 'MemberController@registerMemberPost');
 Route::get('/logoutMember', 'MemberController@logoutMember');
+
+//=============================== Produk ==========================================================
+Route::get('produk_member', 'PemesananProdukController@tampilProduk');
+Route::get('detailProduk{id_produk}', 'PemesananProdukController@tampilDetailProduk');
+Route::get('Member/riwayat_Beli', 'PemesananProdukController@riwayat');
+Route::get('riwayat/{id_pp}', 'PemesananProdukController@riwayatDetail');
+
+//=============================== TreatMent========================================================
+Route::get('treatment_member', 'PemesananTreatmentController@tampilTreatment');
+Route::get('detailTreatment{id_treatment}', 'PemesananTreatmentController@tampilDetailTreatment');

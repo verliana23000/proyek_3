@@ -18,7 +18,7 @@ class PembayaranProdukController extends Controller
     	->select('pembayaran_produk.*','klinik.*')
     	->get();
     $members	= MemberModel::all();
-    $pps		  = PemesananProdukModel::all();
+    $pps		= PemesananProdukModel::all();
     $datas		= PembayaranProdukModel::all();
     return view('admin_klinik.pembayaran_produk.pembayaran_produk', compact('datas','pps','members'));
    	}

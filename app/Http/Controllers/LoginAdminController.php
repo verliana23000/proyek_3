@@ -17,20 +17,19 @@ class LoginAdminController extends Controller
 {
     public function index(){
         if(!Session::get('LoginAdmin')){
-            return redirect('/super_admin/loginadmin')->with('alert', 'Kamu harus login dulu');
+            return redirect('/admin_klinik/loginadmin');
         } else{
             $admin      = AdminsModel::all();
             $klinik     = KlinikModel::all();
             $produk     = ProdukModel::all();
             $treatment  = TreatmentModel::all();
             $member     = MemberModel::all();
-
-            return view('/super_admin/super_index', compact('admin','klinik','produk','treatment','member'));
+            return view('admin_klinik/index', compact('admin','klinik','produk','treatment','member'));
         }
     }
 
     public function login(){
-        return view('/super_admin/loginadmin');
+        return view('admin_klinik/loginadmin');
     }
 
     public function loginPost(Request $request){
@@ -43,21 +42,20 @@ class LoginAdminController extends Controller
                 Session::put('id_admin',$data->id_admin);
                 Session::put('nama',$data->nama);
                 Session::put('email',$data->email);
-             
                 Session::put('loginadmin',TRUE);
-                return redirect('/super_admin/super_index');
+                return redirect('/index');
             }
             else{
-                return redirect('/super_admin/super_index')->with('alert','Password atau Email, Salah !');
+                return view('/loginadmin');
             }
         }
         else{
-            return redirect('/super_admin/loginadmin')->with('alert','Password atau Email, Salah!');
+            return view('/loginadmin');
         }
     }
 
     public function logout(){
         Session::flush();
-        return redirect('/super_admin/loginadmin')->with('alert','Kamu sudah logout');
+        return redirect('admin_klinik/loginadmin');
     }
 }

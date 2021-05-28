@@ -58,9 +58,81 @@
           <li><a class="nav-link scrollto active" href="{{'/home_member'}}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{url('/produk_member')}}">Produk</a></li>
           <li><a class="nav-link scrollto" href="{{url('/treatment_member')}}">Treatment</a></li>
+          <li>
+                        <?php
+                        $pesanan_utama = \App\PemesananProdukModel::where('id_member', Session::get('id_member'))->where('status',0)->first();
+                        if(!empty($pesanan_utama))
+                        {
+                            $notif = \App\DetailPemesananProdukModel::where('id_pp', $pesanan_utama->id_pp)->count();
+                        }
+
+                        ?>
+                            <a class="nav-link" href="{{ url('/Member/keranjangProduk') }}"><i class="fa fa-shopping-cart"></i>
+                            @if(!empty($notif))
+                            <span class="badge badge-danger align-top" style="font-size: 10px; margin-left:-8px; margin-top:-5px; border-radius:50px">{{ $notif }}</span>
+                            @endif
+                            </a>
+                    </li>
+                    <li class="nav-item dropdown"><?php
+                        $pemesanan_notif = \App\PemesananProdukModel::where('id_member', Session::get('id_member'))->where('status',1)->first();
+                        $pemesanan_notif2 = \App\PemesananProdukModel::where('id_member', Session::get('id_member'))->where('status',5)->first();
+
+                        if(!empty($pemesanan_notif))
+                        {
+                            $notifikasi = \App\PemesananProdukModel::where('id_member', Session::get('id_member'))->where('status', $pemesanan_notif->status)->count();
+                        }
+                        if(!empty($pemesanan_notif2))
+                        {
+                            $notifikasi2 = \App\ModelPemesanan::where('id_member', Session::get('id_member'))->where('status', $pemesanan_notif2->status)->count();
+                        }
+                        ?>
+                            <a href="{{ url('Member/riwayat_Beli') }}" class="nav-link"><i class="fas fa-bell"></i>
+                                @if(!empty($pemesanan_notif && $pemesanan_notif2))
+                                <span class="badge badge-danger align-top" style="font-size: 10px; margin-left:-8px; margin-top:-5px; border-radius:50px">{{ $notifikasi + $notifikasi2}}</span>
+                                @elseif(!empty($pemesanan_notif ))
+                                <span class="badge badge-danger align-top" style="font-size: 10px; margin-left:-8px; margin-top:-5px; border-radius:50px">{{ $notifikasi }}</span>
+                                @elseif(!empty($pemesanan_notif2 ))
+                                <span class="badge badge-danger align-top" style="font-size: 10px; margin-left:-8px; margin-top:-5px; border-radius:50px">{{ $notifikasi2 }}</span>
+
+                                @else
+                                <span class="badge badge-danger align-top" style="font-size: 10px; margin-left:-8px; margin-top:-5px; border-radius:50px"></span>
+                                @endif
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownpro">
+                                    <a href="{{ url('Member/riwayat_Beli') }}" class="dropdown-item">
+                                        @if(!empty($notifikasi))
+                                        <span class="badge badge-warning">{{$notifikasi}} Pesanan Belum Dibayar</span>
+                                        @else
+                                        <span class="badge badge-warning">Tidak ada pesanan yang belum dibayar</span>
+                                        @endif
+                                    </a>
+                                    <a href="{{ url('Member/riwayat_Beli') }}" class="dropdown-item">
+                                        @if(!empty($notifikasi2))
+                                        <span class="badge badge-danger">{{$notifikasi2}} Pesanan Dibatalkan</span>
+                                        @else
+                                        <span class="badge badge-warning">Tidak ada pesanan yang belum dibatalkan</span>
+                                        @endif
+                                    </a>
+                                </div>
+                    </li>
+
         </ul>
       </nav>
     </div>
+    <script type="text/javascript">
+
+        function startCalculate(){
+            interval=setInterval("Calculate()",1);
+        }
+        function Calculate(){
+            var a=document.form1.harga_produk.value;
+            var c=document.form1.jumlah.value;
+            document.form1.total.value=(c*a);
+        }
+        function stopCalc(){
+            clearInterval(interval);
+        }
+    </script>
   </header><!-- End Header -->
   
 
@@ -80,7 +152,7 @@
             <img src="" class="img-fluid" alt="">
           </div>
           <div class="col-md-5 mt-5">
-                <img src="{{ url('admin/img/gambar_produk/gambar_treatment/'.$treatments->gambar) }}" class="rounded mx-auto d-block" width="400">
+                <img src="{{ url('admin/img/gambar_produk/'.$produks->gambar) }}" class="rounded mx-auto d-block" width="400">
             </div>
 
           <div class="col-md-7 mt-5">
@@ -90,28 +162,44 @@
                     </div>
                 @endif
 
-                <h2>Pemesanan Treatment </h2>
+                <h2>Pemesanan Produk </h2>
                 <table class="table">
-                <form method="post" id="form1" name="form1" action="{{ url ('pesan') }}/{{ $treatments->id_tretment }}">
+                <form method="post" id="form1" name="form1" action="{{ url ('riwayatDetail') }}/{{ $produks->id_produk }}">
                 {{csrf_field()}}
                     <thead>
                         <tr>
-                            <td><strong>Nama Treatment</strong></td>
+                            <td><strong>Nama Produk</strong></td>
                             <td width="15px">:</td>
-                            <td>{{$treatments->nama_treatment}}</td>
+                            <td>{{$produks->nama_produk}}</td>
                         </tr>
-                    @foreach ($kliniks as $klinik)
+                      @foreach ($kliniks as $klinik)
                         <tr>
                             <td><strong>Nama Klinik</strong></td>
                             <td width="15px">:</td>
                             <td>{{$klinik->nama_klinik}}</td>
                         </tr>
-                    @endforeach
-
+                      @endforeach
+                        <tr>
+                            <td><strong>Stok</strong> </td>
+                            <td width="15px">:</td>
+                            <td>{{$produks->stok}} </td>
+                        </tr>
                         <tr>
                             <td><strong>Harga</strong> </td>
                             <td width="15px">:</td>
-                            <td><input type="text" name="harga_treatment" class="form-control" value="{{$treatments->harga_treatment}}" onfocus="startCalculate()" onblur="stopCalc()" readonly></td>
+                            <td><input type="text" name="harga_produk" class="form-control" value="{{$produks->harga_produk}}" onfocus="startCalculate()" onblur="stopCalc()" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jumlah Beli</strong> </td>
+                            <td width="15px">:</td>
+                            <td><input type="number" name="jumlah" class="form-control @error('jumlah') is-invalid @enderror"  onfocus="startCalculate()" onblur="stopCalc()">
+                                @if ($errors->has('jumlah')) <span class="invalid-feedback"><strong>{{ $errors->first('jumlah') }}</strong></span> @endif
+                            
+                        </tr>
+                        <tr>
+                            <td><strong>Jumlah Harga</strong> </td>
+                            <td width="15px">:</td>
+                            <td><input class="form-control" name="total" onfocus="startCalculate()" onblur="stopCalc()" readonly></td>
                         </tr>
                         <tr>
                             <td>
@@ -119,7 +207,7 @@
                                 <td width="15px"></td>
                                 <td>
                                     <button class="btn btn-danger" data-toggle="modal" data-target="#login">
-                                    Bayar Sekarang</button>
+                                    Checkout</button>
                                 </td>
                             </td>
 
@@ -132,7 +220,6 @@
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
           </div>
         </div>
-
       </div>
     </section><!-- End About Us Section -->
 
