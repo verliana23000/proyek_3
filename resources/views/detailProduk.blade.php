@@ -94,7 +94,7 @@
             <img src="" class="img-fluid" alt="">
           </div>
           <div class="col-md-5 mt-5">
-                <img src="{{ url('admin/img/gambar_produk/'.$produks->gambar) }}" class="rounded mx-auto d-block" width="400">
+                <img src="{{ url('admin/img/gambar_produk/'.$produks->gambar_produk) }}" class="rounded mx-auto d-block" width="400">
             </div>
 
           <div class="col-md-7 mt-5">

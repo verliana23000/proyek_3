@@ -20,7 +20,7 @@ class CreateAdminsTable extends Migration
             $table->text('alamat');
             $table->string('email')->unique();
             $table->string('password');
-            $table->timestamps()
+            $table->timestamps();
         });
     }
 

@@ -49,15 +49,16 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="{{'/home_member'}}" style="color: #b4ceff">E-Beauty</a></h1>
+      <h1 class="logo me-auto"><a href="{{'/home_member'}}">E-Beauty</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="{{'/home_member'}}">Home</a></li>
+          <li><a class="nav-link scrollto active" href="{{'/home_member'}}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{url('/produk_member')}}">Produk</a></li>
-          <li><a class="nav-link scrollto active" href="{{url('/treatment_member')}}">Treatment</a></li>        
+          <li><a class="nav-link scrollto" href="{{url('/treatment_member')}}">Treatment</a></li>
+               
         </ul>
       </nav><!-- .navbar -->
 
@@ -71,30 +72,46 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Treatment</h2>
+          <h2>Produk</h2>
         </div>
 
         <div class="row">
-            @foreach ($treatments as $treatment)
+            @foreach ($kliniks as $klinik)
         <div class="col-lg-3 col-md-6 mb-4 mb-lg-4" data-aos="fade-up">
             <div class="block-team-member-1 text-left rounded">
-                <center><img src="{{ url('admin/img/gambar_produk/gambar_treatment/'.$treatment->gambar) }}" 
-                alt="Image" width="250px" height="250px"></center>
+              <center><img src="{{ url('admin/img/gambar_klinik/'.$klinik->gambar) }}" alt="Image" width="250px" height="250px"></center>
               <p class="px-3 mb-4 mt-3">
-                    <span style="color: black">{{$treatment->nama_treatment}}</span> <br>
+
+                    <span style="color: black">{{$klinik->nama_klinik}}</span>
                     @foreach ($kliniks as $klinik)
                     <span style="color: black"> {{ ($klinik->nama_klinik) }}
                     </span>
-                    @endforeach<br>
-                    <span style="color: green">Rp. {{$treatment->harga_treatment}}</span> <br>
+                    @endforeach <br>
+                    @if($produk->stok <=0)
+                    <span class="badge badge-danger">Habis</span>
+                    @else
+                    <span style="color: green">Rp. {{$produk->harga_produk}}</span> <br>
+                    @endif
+                    
+                    
                 <center>
-                        <a href="{{url('/DetailPemesananTreatment'.$treatment->id_treatment)}}" class="btn btn-outline-success py-1 px-3" >
-                        Pesan Sekarang</a>
+                    @if($produk->stok <= 0)
+                        <button class="btn btn-outline-success py-1 px-3" disabled>
+                        <i class="fas fa-cart-plus"></i></button>
+                    @else
+                        <a href="{{url('detailProduk'.$produk->id_produk)}}" class="btn btn-outline-success py-1 px-3" >
+                        <i class="fas fa-cart-plus"></i></a>
+
+                        <a href="{{url('detailProduk'.$produk->id_produk)}}" class="btn btn-outline-success py-1 px-3" >
+                        Lihat Produk</a>
+                    @endif
                 </center>
-              </p>
+                </p>
+                
             </div>
         </div>
             @endforeach
+
 
           </div>
         </div>
@@ -105,19 +122,5 @@
     </section>
     <!-- End About Us Section -->
 
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="{{('template_member/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{('template_member/assets/vendor/glightbox/js/glightbox.min.js')}}"></script>
-  <script src="{{('template_member/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-  <script src="{{('template_member/assets/vendor/php-email-form/validate.js')}}"></script>
-  <script src="{{('template_member/assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
-
-  <!-- Template Main JS File -->
-  <script src="{{('template_member/assets/js/main.js')}}"></script>
-
 </body>
-
 </html>

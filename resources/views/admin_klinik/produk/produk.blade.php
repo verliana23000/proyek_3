@@ -142,7 +142,7 @@
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#edit-data-{{$data->id_produk}}">
-                                        <i class="fas fa-user-edit"></i>
+                                        <i class="fas fa-user-alt"></i>
                                     </button>
                                     <form action="{{url('deleteProduk', $data->id_produk)}}" method="POST" class="d-inline">
                                         @csrf
