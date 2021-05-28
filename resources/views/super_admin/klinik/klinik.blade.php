@@ -62,6 +62,28 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+                    <tbody>
+
+                      @foreach($datas as $data)
+                            <img width="150px" src="{{ url('admin/img/logo/'.$data->logo) }}">
+                        </td>
+                        <td>{{$data->nama_klinik}}</td>
+                        <td>
+                        {{$data->alamat}}
+                        </td>
+                        <td>{{$data->no_hp}}</td>
+                        <td>{{$data->deskripsi}}</td>
+                        <td>
+                          <a href="/admin/edit_data{$data->id}}" class="btn btn-warning">
+                            <i class="fas fa-pencil-alt"></i>
+                          </a>
+                          <a href="/admin/klinik{{$data->id_klinik}}" class="btn btn-danger" onclick="return confirm('Anda yakin mau menghapus item ini ?')">
+                            <i class="fas fa-trash"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                      @endforeach 
 
                                 <form action="addKlinik" method="POST" enctype="multipart/form-data">
                                     @csrf
@@ -187,7 +209,7 @@
                                     rows="2">{{$data->deskripsi}}</textarea>
                             </div>
                             <label>Logo</label><br>
-                            <img width="150px" src="{{ url('admin/img/logo/'.$data->logo) }}">
+                            <img width="150px" src="{{ url('admin/img/gambar_produk/logo/'.$data->logo) }}">
                             <div class="custom-file"><br>
                             <input type="file" name="logo" id="logo">
                             <br><label class="text-primary" for="logo">* Ukuran Maksimal 2 Mb<br>

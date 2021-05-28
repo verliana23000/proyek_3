@@ -98,8 +98,10 @@ Route::delete('deleteAntrian/{id}','AntrianController@delete');
 Route::get('Member/DashboardMember', 'MemberController@index');
 
 Route::get('/produk_member', 'PemesananProdukController@tampilProduk');
-Route::get('/detailProduk(id_produk)', 'PemesananProdukController@tampilDetailProduk');
+Route::get('/detailProduk{id_produk}', 'PemesananProdukController@tampilDetailProduk');
 Route::get('/treatment_member', 'PemesananTreatmentController@tampilTreatment');
 Route::get('/detailTreatment(id_treatment)', 'PemesananProdukController@tampilDetailTreatment');
 Route::post('/registerMemberPost', 'MemberController@registerMemberPost');
 Route::get('/logoutMember', 'MemberController@logoutMember');
+
+Route::get('/', 'HalamanMemberController@tampil');

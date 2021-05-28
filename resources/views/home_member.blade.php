@@ -49,19 +49,59 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="{{url('/home_member')}}">E-Beauty</a></h1>
+      <h1 class="logo me-auto"><a href="{{url('/home_member')}}" style="color: purple">E-Beauty</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="{{'/home_member'}}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{url('/produk_member')}}">Produk</a></li>
           <li><a class="nav-link scrollto" href="{{url('/treatment_member')}}">Treatment</a></li>
-          <li><a><button class="btn btn-outline-success py-1 px-3" data-bs-toggle="modal" data-bs-target="#login" >Login</button></a></li>
-
-        </div>
+          <li><a><button class="btn btn-outline-success py-1 px-3" data-bs-toggle="modal" data-bs-target="#login" >Login</button></a></li> 
     </ul>
     </nav>
   </header><!-- End Header -->
+
+  <section id="hero">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+      <div class="carousel-inner" role="listbox">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate__animated animate__fadeInDown">Welcome to <span>E-Beauty</span></h2>
+              <p class="animate__animated animate__fadeInUp">Kamu sedang mencari skincare ? Tepat sekali, Kami juga sedang menjual berbagai skincare terbaik untuk perawatan wajah para ciwi ciwi</p>
+              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate__animated animate__fadeInDown">Dari Produk hingga treatment</h2>
+              <p class="animate__animated animate__fadeInUp">Kami juga menyediakan layanan treatment bagi para ciwi ciwi yang ingin melakukan perawatan wajah, dan nantinya bagi anda yang ingin melakukan pemesanan harap dp dulu untuk mendapatkan selembar nomor antrian yaaa</p>
+              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+  </section><!-- End Hero -->
 
   <main id="main">
 
@@ -70,36 +110,43 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>Konten Apa Aja Dah</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>E-COMMERCE PRODUK DAN TREATMENT KECANTIKAN</h2>
+          <p> </p>
         </div>
-
-        <div class="row">
-          <div class="col-lg-6 order-1 order-lg-2">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <ul>
-              <li><i class="bi bi-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="bi bi-check-circled"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="bi bi-check-circled"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-            </ul>
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p>
-          </div>
-        </div>
-
       </div>
     </section><!-- End About Us Section -->
-
+  
+    
+    <!-- ***** Testimonials Starts ***** -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-12">
+                    <div class="section-heading">
+                        <br><h3 style="color: black">klinik Kecantikan</h3></br>
+                    </div>
+                </div>
+            @foreach ($klinik as $klinik)
+                
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 mobile-bottom-fix-big">
+                    <div class="item author-item" >
+                        <div class="member-thumb">
+                        <img src="{{url('admin/img/logo/'.$klinik->logo)}}" height="200" width="200" alt="">
+                            <div class="hover-effect">
+                                <div class="hover-content">
+                                    <a href="/produk_member" class="main-filled-button">Lihat Produk</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br><br>
+                </div>
+            @endforeach
+            </div>
+        </div>
+    </section>
+    <!-- ***** Testimonials Ends ***** -->
+    
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/jquery-ui.js"></script>

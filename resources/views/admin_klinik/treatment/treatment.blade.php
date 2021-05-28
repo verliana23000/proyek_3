@@ -125,6 +125,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                              $no=1;
+                            @endphp
                             @foreach ($datas as $data)
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
@@ -136,7 +139,7 @@
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#edit-data-{{$data->id_treatment}}">
-                                        <i class="fas fa-user-edit"></i>
+                                        <i class="fas fa-user-alt"></i>
                                     </button>
                                     <form action="{{url('deleteTreatment', $data->id_treatment)}}" method="POST" class="d-inline">
                                         @csrf
