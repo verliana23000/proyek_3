@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>Login Admin Klinik</title>
 	<link rel="stylesheet" href="{{asset('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')}}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="{{asset('css/my-login.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('template_login/css/my-login.css')}}">
 </head>
 
 <body class="my-login-page">
@@ -33,21 +33,20 @@
 			<div class="row justify-content-md-center h-100">
 				<div class="card-wrapper">
 					<div class="brand">
-						<img src="img/logo.jpg" alt="logo">
 					</div>
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Login</h4>
-                            <form class="user" method="POST" action="{{url('admin_klinik/loginPost')}}" >
-                             {{csrf_field()}}
+							<form action="{{ url('/loginAdminPost') }}" method="post" class="form">
+                  			{{ csrf_field() }}
 								<div class="form-group">
 									<label for="email">Email</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+									<input id="email" type="email" class="form-control" name="email" required autofocus>
 								</div>
 
 								<div class="form-group">
 									<label for="password">Password</label>
-                                    <input id="password" type="password" class="form-control" name="password" value="" required autofocus>							    	</div>
+                                    <input id="password" type="password" class="form-control" name="password" required autofocus>							    	</div>
 								</div>
 
 								<div class="form-group">
@@ -67,9 +66,6 @@
 								</div>
 							</form>
 						</div>
-					</div>
-					<div class="footer">
-						Copyright &copy; 2017 &mdash; Your Company 
 					</div>
 				</div>
 			</div>

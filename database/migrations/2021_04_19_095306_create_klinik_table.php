@@ -18,6 +18,8 @@ class CreateKlinikTable extends Migration
             $table->string('nama_klinik');
             $table->string('alamat');
             $table->string('no_hp');
+            $table->string('email');
+            $table->string('password');
             $table->string('deskripsi');
             $table->string('logo');
             $table->timestamps();

@@ -10,8 +10,6 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{('template_member/assets/img/favicon.png')}}" rel="icon">
-  <link href="{{('template_member/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
     <link href="{{('template_member/https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i')}}" rel="stylesheet">
@@ -44,11 +42,11 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="{{url('/home_member')}}" style="color: #b4ceff">E-Beauty</a></h1>
+    <h1 class="logo me-auto"><a href="#"  style="color: #b4ceff">E-Beauty</a></h1>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="{{'/home_member'}}">Home</a></li>
+          <li><a class="nav-link scrollto active" href="{{'/'}}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{url('/produk_member')}}">Produk</a></li>
           <li><a class="nav-link scrollto" href="{{url('/treatment_member')}}">Treatment</a></li>
           <li><a><button class="btn btn-outline-info py-1 px-3" data-bs-toggle="modal" data-bs-target="#login" >Login</button></a></li>
@@ -61,20 +59,22 @@
         <h5 class="modal-title" id="exampleModalLabel">LOGIN </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
       @if(\Session::has('alert'))
                 <div class="alert alert-danger">
                     <div>{{Session::get('alert')}}</div>
                 </div>
-            @endif
-            @if(\Session::has('alert-success'))
+      @endif
+      @if(\Session::has('alert-success'))
                 <div class="alert alert-success">
                     <div>{{Session::get('alert-success')}}</div>
                 </div>
-            @endif
-                  <div class="modal-body">
-                  <form action="{{ url('/loginMemberPost') }}" method="post">
+      @endif
+                <div class="modal-body">
+                  <form action="{{ url('/loginMemberPost') }}" method="post" class="form">
                   {{ csrf_field() }}
-                    <div class="form-group input-rounded">
+
+                  <div class="form-group input-rounded">
                     <label>Email</label>
                       <input type="email" class="form-control" placeholder="Masukkan Email" name="email" />
                     </div><br>
@@ -85,17 +85,15 @@
                     </div><br>
 
                     <div class="form-inline">
-                      <div class="checkbox">
-                        <label> Belum punya akun ? <button type="button" class="btn btn-link">Buat Akun Baru</button>
+                      <div class="btn">
+                        <label> Belum punya akun ? <a href="{{ url('daftar') }}">Buat Akun Baru</a>
                         </label> 
                       </div>
                   </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>|
-        <input id="submit-btn" type="submit" name="submit" value="LOGIN" />
-
-      </div>
+      
+        <input id="submit" type="submit" name="submit" value="LOGIN" />
+        </form>
+      
     </div>
   </div>
 </div>
@@ -112,23 +110,20 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
+        <div class="carousel-item active" style="background-image: url(admin/img/facial.jpg)">
           <div class="carousel-container">
             <div class="container">
               <h2 class="animate__animated animate__fadeInDown">Welcome to <span>E-Beauty</span></h2>
-              <p class="animate__animated animate__fadeInUp">Kamu sedang mencari skincare ? Tepat sekali, Kami juga sedang menjual berbagai skincare terbaik untuk perawatan wajah para ciwi ciwi</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+              <p>E-COMMERCE PRODUK DAN TREATMENT KECANTIKAN</p>
+
             </div>
           </div>
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
+        <div class="carousel-item" style="background-image: url(admin/img/slide/maskeran.jpg)">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">Dari Produk hingga treatment</h2>
-              <p class="animate__animated animate__fadeInUp">Kami juga menyediakan layanan treatment bagi para ciwi ciwi yang ingin melakukan perawatan wajah, dan nantinya bagi anda yang ingin melakukan pemesanan harap dp dulu untuk mendapatkan selembar nomor antrian yaaa</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
             </div>
           </div>
         </div>
@@ -153,8 +148,6 @@
       <div class="container">
 
         <div class="section-title">
-          <h2>E-COMMERCE PRODUK DAN TREATMENT KECANTIKAN</h2>
-          <p> </p>
         </div>
       </div>
     </section><!-- End About Us Section -->
@@ -166,7 +159,7 @@
             <div class="row">
             <div class="col-lg-12">
                     <div class="section-heading">
-                        <br><h3 style="color: black">klinik Kecantikan</h3></br>
+                        <br><h3 style="color: black">Daftar Klinik Kecantikan</h3></br>
                     </div>
                 </div>
             @foreach ($klinik as $klinik)

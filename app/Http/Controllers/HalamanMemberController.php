@@ -11,12 +11,12 @@ class HalamanMemberController extends Controller
 {
     public function tampil(){
         $klinik	= KlinikModel::all();
-    
         return view('home_member', compact('klinik'));
-        }
+    
+    }
 
         public function detailProduk(){
             $klinik	= KlinikModel::all();
             return view('home_member', compact('klinik'));
-            }
+        }
 }

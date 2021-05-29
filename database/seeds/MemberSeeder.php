@@ -13,12 +13,12 @@ class MemberSeeder extends Seeder
     public function run()
     {
         MemberModel::create([
-            'nama_member'=> 'vira',
+            'nama_member'=> 'entus',
             'ttl' => '1998-02-03',
             'jk' => 'Perempuan',
             'no_hp' => '089661143256',
-            'email' => 'viraimut@gmail.com',
-            'password' => bcrypt('vira123') ,
+            'email' => 'entus@gmail.com',
+            'password' => Hash::make('12345678') ,
             'id_klinik' => 1,
         ]);
     }
