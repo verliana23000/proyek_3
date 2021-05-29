@@ -114,13 +114,11 @@
                             <td width="15px">:</td>
                             <td>{{$produks->nama_produk}}</td>
                         </tr>
-                      @foreach ($kliniks as $klinik)
                         <tr>
-                            <td><strong>Nama Klinik</strong></td>
+                            <td><strong>Nama </strong></td>
                             <td width="15px">:</td>
-                            <td>{{$klinik->nama_klinik}}</td>
+                            <td>{{$produks->klinik->nama_klinik}}</td>
                         </tr>
-                      @endforeach
                         <tr>
                             <td><strong>Stok</strong> </td>
                             <td width="15px">:</td>

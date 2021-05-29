@@ -263,7 +263,7 @@
                                         <td>{{$produk->jenis_produk}}</td>
                                         <td>{{$produk->harga_produk}}</td>
                                         <td>{{$produk->stok}}</td>
-                                        <td><img width="150px" src="{{url('admin/img/gambar_produk/'.$data->gambar_produk)}}"></td>
+                                        <td><img width="150px" src="{{asset('admin/img/gambar_produk/'.$produk->gambar_produk)}}"></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

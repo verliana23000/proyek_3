@@ -18,7 +18,7 @@ class ProdukModel extends Model
     
     ]; //field 
 
-    public function Klinik(){
-        return $this->belongsTo(ProdukModel::class,'id_produk');
+    public function klinik(){
+        return $this->belongsTo(KlinikModel::class,'id_klinik');
     }
 }

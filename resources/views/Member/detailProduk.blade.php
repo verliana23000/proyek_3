@@ -203,10 +203,10 @@
                         </tr>
                         <tr>
                             <td>
-                            <a href="{{ url('home_member') }}" class="button-contactFrom btn_2"><i class="fas fa-arrow-left"></i> Kembali</a>
+                            <a href="{{ url('/') }}" class="button-contactFrom btn_2"><i class="fas fa-arrow-left"></i> Kembali</a>
                                 <td width="15px"></td>
                                 <td>
-                                    <button class="btn btn-danger" data-toggle="modal" data-target="#login">
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#Login">
                                     Checkout</button>
                                 </td>
                             </td>
