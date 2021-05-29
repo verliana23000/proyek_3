@@ -13,7 +13,7 @@ class MemberController extends Controller{
 	
 public function index(){
 	if(!Session::get('login')){
-		return redirect('Member/DashboardMember');
+		return view('Member/DashboardMember');
 	}
 	else{
 		return view('home_member');
@@ -27,6 +27,7 @@ public function loginMemberPost  (Request $request){
 	$data = MemberModel::where('email',$email)->first();
 	if($data){
 		if(Hash::check($password,$data->password)){
+			Session::put('nama_member',$data->nama_member);
 			Session::put('email',$data->email);
 			Session::put('id_member',$data->id_member);
 			Session::put('loginMemberPost',TRUE);
@@ -34,18 +35,18 @@ public function loginMemberPost  (Request $request){
 	} 
 	else {
 		
-		return 'salah';
+		return view('/')->with('ERROR ! Email atau Password salah !');
 	}
 }
 	else {
-		return 'salah juga';
+		return view('/')->with('ERROR ! Email atau Password salah !');
 		
 	}
 }
 
 public function logoutMember(){
 	Session::flush();
-	return redirect('home_member');
+	return redirect('/');
 }
 
 public function registerMember(Request $request){
@@ -81,5 +82,5 @@ public function registerMemberPost(Request $request){
 	$data->save();
 	return redirect('home_member');
 
+		}
 	}
-}

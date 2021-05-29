@@ -20,16 +20,25 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Daftar Akun Member</h4>
-							<form method="POST" class="my-login-validation" novalidate="">
+							@if(\Session::has('alert'))
+								<div class="alert alert-danger mb-3" align="center" style="background-color: red; color:white; ">
+									<div>{{Session::get('alert')}}</div>
+								</div>
+							@endif
+							@if(\Session::has('alert-success'))
+								<div class="alert alert-success">
+									<div>{{Session::get('alert-success')}}</div>
+								</div>
+							@endif
+							<form action="{{ url('/registerMemberPost') }}" method="post" class="form">
+							{{ csrf_field() }}
+                                <div class="modal-body">
 								<div class="form-group">
 									<label for="nama_member">Nama </label>
-									<input id="nama_member" type="email" class="form-control" name="nama_member" value="">
+									<input id="nama_member" type="text" class="form-control" name="nama_member" value="">
 									<div class="invalid-feedback">
 									</div>
 								</div>
-                                <form method="POST" action="{{url('/registerMember')}}">
-                                    @csrf
-                                <div class="modal-body">
                                 <div class="form-group">
 									<label for="ttl">Tanggal Lahir </label>
 									<input id="ttl" type="date" class="form-control" name="ttl" value="">
@@ -53,7 +62,7 @@
 								</div>
                                 <div class="form-group">
 									<label for="no_hp">No Hp </label>
-									<input id="no_hp" type="email" class="form-control" name="no_hp" value=""  >
+									<input id="no_hp" type="number" class="form-control" name="no_hp" value=""  >
 									<div class="invalid-feedback">
 									</div>
 								</div>

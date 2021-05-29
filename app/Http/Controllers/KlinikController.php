@@ -37,7 +37,7 @@ public function create(Request $request){
 		'logo.max' 				=> 'Tidak boleh lebih 2 Mb',
 
 	]);
-
+	
 	
 	$data = new KlinikModel();
         $data->id_klinik	= $request->id_klinik;

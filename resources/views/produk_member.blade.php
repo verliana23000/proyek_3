@@ -49,13 +49,13 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="{{'/home_member'}}" style="color: #b4ceff">E-Beauty</a></h1>
+      <h1 class="logo me-auto"><a href="{{'/'}}" style="color: #b4ceff">E-Beauty</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto" href="{{'/home_member'}}">Home</a></li>
+          <li><a class="nav-link scrollto" href="{{'/'}}">Home</a></li>
           <li><a class="nav-link scrollto active" href="{{url('/produk_member')}}">Produk</a></li>
           <li><a class="nav-link scrollto" href="{{url('/treatment_member')}}">Treatment</a></li>
                

@@ -28,13 +28,6 @@
 
   <!-- Template Main CSS File -->
   <link href="{{asset('template_member/assets/css/style.css')}}" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Green - v4.1.0
-  * Template URL: https://bootstrapmade.com/green-free-one-page-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -50,17 +43,24 @@
     <div class="container d-flex align-items-center">
 
       <h1 class="logo me-auto"><a href="{{url('/DashboardMember')}}">E-Beauty</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <a href="#" class="logo me-auto"><img src="admin/img/logo/beauty.png" alt="" class="img-fluid"></a>
 
-      <nav id="navbar" class="navbar">
+      <nav id="navbar" class="navbar" role="navigation">
         <ul>
           <li><a class="nav-link scrollto active" href="{{'/DashboardMember'}}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{url('/produk_member')}}">Produk</a></li>
-          <li><a class="nav-link scrollto" href="{{url('/treatment_member')}}">Treatment</a></li>        
+          <li><a class="nav-link scrollto" href="{{url('/treatment_member')}}">Treatment</a></li>
+        </ul>       
+      </nav>
+      
+      <div class="btn-group ms-4">
+        <button type="button" class="btn btn-outline-info py-1 px-3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        {{Session('nama_member')}}
+        </button>
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{{('/logoutMember')}}">Logout</a></li>
         </ul>
-      </nav><!-- .navbar -->
-
+      </div>
     </div>
   </header><!-- End Header -->
 
@@ -73,23 +73,18 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
+        <div class="carousel-item active" style="background-image: url(admin/img/slide/facial.jpg)">
           <div class="carousel-container">
             <div class="container">
               <h2 class="animate__animated animate__fadeInDown">Welcome to <span>E-Beauty</span></h2>
-              <p class="animate__animated animate__fadeInUp">Kamu sedang mencari skincare ? Tepat sekali, Kami juga sedang menjual berbagai skincare terbaik untuk perawatan wajah para ciwi ciwi</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
             </div>
           </div>
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url(assets/img/slide/slide-2.jpg)">
+        <div class="carousel-item" style="background-image: url(admin/img/slide/maskeran.jpg)">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">Dari Produk hingga treatment</h2>
-              <p class="animate__animated animate__fadeInUp">Kami juga menyediakan layanan treatment bagi para ciwi ciwi yang ingin melakukan perawatan wajah, dan nantinya bagi anda yang ingin melakukan pemesanan harap dp dulu untuk mendapatkan selembar nomor antrian yaaa</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
             </div>
           </div>
         </div>

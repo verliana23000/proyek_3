@@ -64,27 +64,6 @@
                                 </div>
                     <tbody>
 
-                      @foreach($datas as $data)
-                            <img width="150px" src="{{ url('admin/img/logo/'.$data->logo) }}">
-                        </td>
-                        <td>{{$data->nama_klinik}}</td>
-                        <td>
-                        {{$data->alamat}}
-                        </td>
-                        <td>{{$data->no_hp}}</td>
-                        <td>{{$data->deskripsi}}</td>
-                        <td>
-                          <a href="/admin/edit_data{$data->id}}" class="btn btn-warning">
-                            <i class="fas fa-pencil-alt"></i>
-                          </a>
-                          <a href="/admin/klinik{{$data->id_klinik}}" class="btn btn-danger" onclick="return confirm('Anda yakin mau menghapus item ini ?')">
-                            <i class="fas fa-trash"></i>
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                      @endforeach 
-
                                 <form action="addKlinik" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-body">
@@ -136,7 +115,6 @@
                                 <th>No Hp</th>
                                 <th>Deskripsi</th>
                                 <th>Logo</th>
-                                <th>Detail</th>
                                 <th>Validasi</th>
                             </tr>
                         </thead>
@@ -150,12 +128,16 @@
                                 <td>{{$data->deskripsi}}</td>
                                 <td><img width="150px" src="{{ url('admin/img/logo/'.$data->logo) }}"></td>
 
-                                <td>
+                                <!-- <td>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#detailProduk{{$data->id_klinik}}">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#detailTreatment{{$data->id_klinik}}">
                                         <i class="fas fa-eye"></i>
                                     </button>
-                                </td>
+                                </td> -->
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#edit-data-{{$data->id_klinik}}">
@@ -169,7 +151,7 @@
                 </div>
             </div>
         </div>
-        @foreach ($datas as $data)
+        <!-- @foreach ($datas as $data)
 
         {{-- Modal edit --}}
 
@@ -230,15 +212,15 @@
         </div> 
     </form>
     {{-- Akhir Modal Edit --}}
-@endforeach
+@endforeach -->
    
    <!-- Modal Detail -->
                             @foreach($datas as $klinik)
-                            <div class="modal fade" tabindex="-1" role="dialog" id="detailTreatment{{$klinik->id_klinik}}" aria-hidden="true">
+                            <div class="modal fade" tabindex="-1" role="dialog" id="detailProduk{{$klinik->id_klinik}}" aria-hidden="true">
                                 <div class="modal-dialog modal-xl" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">List Produk dan Treatment {{ $klinik->nama_klinik }}</h5>
+                                            <h5 class="modal-title">List Produk {{ $klinik->nama_klinik }}</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -263,14 +245,14 @@
                                         <td>{{$produk->jenis_produk}}</td>
                                         <td>{{$produk->harga_produk}}</td>
                                         <td>{{$produk->stok}}</td>
-                                        <td><img width="150px" src="{{url('admin/img/gambar_produk/'.$data->gambar_produk)}}"></td>
+                                        <td><img width="150px" src="{{asset('admin/img/gambar_produk/'.$produk->gambar_produk)}}"></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
         @endforeach
 
 <!-- Modal Detail -->
-@foreach($datas as $klinik)
+<!-- @foreach($datas as $klinik)
             <div class="modal fade" tabindex="-1" role="dialog" id="detailTreatment{{$klinik->id_klinik}}" aria-hidden="true">
                 <div class="modal-dialog modal-xl" role="document">
                     <div class="modal-content">
@@ -298,9 +280,9 @@
                                         <td>{{$treatment->nama_treatment}}</td>
                                         <td>{{$treatment->jenis_treatment}}</td>
                                         <td>{{$treatment->harga_treatment}}</td>
-                                        <td><img width="150px" src="{{url('admin/img/gambar_produk/gambar_treatment/'.$data->gambar_produk)}}"></td>
+                                        <td><img width="150px" src="{{asset('admin/img/gambar_produk/gambar_treatment/'.$treatment->gambar_treatment)}}"></td>
                                     </tr>
                                     @endforeach
                                 </tbody>                 
-@endforeach
+@endforeach -->
 @endsection

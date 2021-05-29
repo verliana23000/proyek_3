@@ -3,29 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Providers\RouteServiceProvider;
-use App\AdminsModel;
-use App\KlinikModel;
-use App\ProdukModel;
-use App\TreatmentModel;
-use App\MemberModel;
 
-use Hash;
-use Session;
-
-class LoginAdminController extends Controller
+class LoginSuperController extends Controller
 {
     public function index(){
-        if(!Session::get('loginadmin')){
+        if(!Session::get('LoginAdmin')){
             return redirect('admin_klinik/loginadmin');
         } 
         else{
-            $admin      = AdminsModel::all();
             $klinik     = KlinikModel::all();
-            $produk     = ProdukModel::all();
-            $treatment  = TreatmentModel::all();
             $member     = MemberModel::all();
-            return view('admin_klinik/index', compact('admin','klinik','produk','treatment','member'));
+            return view('admin_klinik/index', compact('klinik','member'));
         }
     }
 
@@ -33,7 +21,7 @@ class LoginAdminController extends Controller
         return view('admin_klinik/loginadmin');
     }
 
-    public function loginAdminPost(Request $request){
+    public function loginPost(Request $request){
         $email = $request->email;
         $password = $request->password;
 
@@ -43,16 +31,15 @@ class LoginAdminController extends Controller
                 Session::put('id_admin',$data->id_admin);
                 Session::put('nama',$data->nama);
                 Session::put('email',$data->email);
-                Session::put('password',$data->password);
-                Session::put('loginAdminPost',TRUE);
-                return redirect('admin_klinik/index');
+                Session::put('loginadmin',TRUE);
+                return redirect('/index');
             }
             else{
-                return redirect('admin_klinik/loginadmin')->with('alert','Email atau Password Salah !');
+                return view('/loginadmin');
             }
         }
         else{
-                return redirect('admin_klinik/loginadmin')->with('alert','Data tidak tersedia !');
+            return view('/loginadmin');
         }
     }
 
