@@ -5,7 +5,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard Produk</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{url('/index')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{url('/DashboardAdmin')}}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Dashboard Produk</li>
         </ol>
     </div>
@@ -92,15 +92,6 @@
                                         <input type="file" name="gambar" id="gambar">
                                         <br><label class="text-primary" for="gambar">* Ukuran maksimal 2 Mb</label>
                                         </div>
-                                            <label for="klinik">Klinik</label>
-                                            <select class="select2-single-placeholder form-control" 
-                                              name="klinik" id="klinik" style="width: 100%">
-                                            <option value="">Pilih Klinik</option>  
-                                            @foreach ($kliniks as $klinik)
-                                            <option value="{{$klinik->id_klinik}}">{{$klinik->nama_klinik}}
-                                            </option>
-                                            @endforeach
-                                            </select>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-danger"
@@ -125,7 +116,6 @@
                                 <th>Harga</th>
                                 <th>Stok</th>
                                 <th>Gambar</th>
-                                <th>Klinik</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -138,11 +128,10 @@
                                 <td>@rupiah($data->harga_produk)</td>
                                 <td>{{$data->stok}}</td>
                                 <td><img width="150px" src="{{url('admin/img/gambar_produk/'.$data->gambar)}}"></td>
-                                <td>{{$data->nama_klinik}}</td>                              
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#edit-data-{{$data->id_produk}}">
-                                        <i class="fas fa-user-alt"></i>
+                                        <i class="fas fa-pencil-alt"></i>
                                     </button>
                                     <form action="{{url('deleteProduk', $data->id_produk)}}" method="POST" class="d-inline">
                                         @csrf
@@ -207,11 +196,6 @@
                             <span class="text-danger"><p class="text-right">* {{ $errors->first('gambar') }}</p></span>
                             @endif
                             
-                            <div class="form-group">
-                                <label for="klinik">Nama Klinik</label>
-                                <input type="text" class="form-control" id="klinik" name="klinik"
-                                    value="{{$data->nama_klinik}}" readonly>
-                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
@@ -223,7 +207,6 @@
             </div>
             </div>
         </div> 
-
     {{-- Akhir Modal Edit --}}
 @endforeach
 @endsection

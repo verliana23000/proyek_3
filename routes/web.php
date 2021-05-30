@@ -29,32 +29,25 @@ Route::get('super_index', function () {
     return view('super_admin/super_index');
 });
 
-Route::get('index', function () {
+Route::get('admin_klinik/index', function () {
     return view('admin_klinik/index');
 });
 
 
 //======================= Super Admin ==================================
-// Route::get('/super_admin/loginadmin', 'LoginAdminController@login');
-// Route::get('/super_admin/super_index', 'LoginAdminController@index');
-// Route::post('/super_admin/loginPost', 'LoginAdminController@loginPost');
-// Route::post('/super_admin/loginPost', 'LoginAdminController@loginPost');
-// Route::get('/super_admin/logout', 'LoginAdminController@logout');
+Route::get('/super_admin/DashboardSuper','KlinikController@tampil');
 
-Route::get('klinik','KlinikController@index');
 Route::post('addKlinik', 'KlinikController@create');
-Route::put('editKlinik/{id}','KlinikController@update');
+Route::put('editKlinik{id}','KlinikController@update');
+Route::delete('deleteKlinik{id_klinik}','KlinikController@delete');
+
 
 //========================Admin Klinik==================================
 
-Route::get('admin_klinik/loginadmin', 'LoginAdminController@login');
-Route::get('admin_klinik/index', 'LoginAdminController@index');
-Route::post('loginAdminPost', 'LoginAdminController@loginAdminPost');
-Route::get('logoutAdmin', 'LoginAdminController@logout');
+Route::get('/admin_klinik/DashboardAdmin','CrudMemberController@tampil');
 
-Route::get('member','CrudMemberController@index');
-Route::get('addMember','CrudMemberController@create');
-Route::get('editMember(id)','CrudMemberController@update');
+Route::post('addMember','CrudMemberController@create');
+Route::delete('deleteMember/{id}','CrudMemberController@delete');
 
 Route::get('produk','ProdukController@index');
 Route::post('addProduk', 'ProdukController@create');
@@ -92,12 +85,9 @@ Route::delete('deleteAntrian/{id}','AntrianController@delete');
 
 
 //================================ Member ============================================
-Route::get('member/DashboardMember', 'MemberController@index');
-Route::get('/index', 'MemberController@loginMember');
-Route::post('/loginMemberPost', 'MemberController@loginMemberPost');
+Route::get('member/DashboardMember', 'MemberController@tampil');
 Route::get('/registerMember', 'MemberController@registerMember');
 Route::post('registerMemberPost', 'MemberController@registerMemberPost');
-Route::get('/logoutMember', 'MemberController@logoutMember');
 
 
 //=============================== Produk ==========================================================
@@ -109,12 +99,14 @@ Route::get('riwayat/{id_pp}', 'PemesananProdukController@riwayatDetail');
 //=============================== TreatMent========================================================
 Route::get('treatment_member', 'PemesananTreatmentController@tampilTreatment');
 Route::get('detailTreatment{id_treatment}', 'PemesananTreatmentController@tampilDetailTreatment');
-
 Route::get('/produk_member', 'PemesananProdukController@tampilProduk');
 Route::get('/detailProduk{id_produk}', 'PemesananProdukController@tampilDetailProduk');
 Route::get('/treatment_member', 'PemesananTreatmentController@tampilTreatment');
 Route::get('/detailTreatment(id_treatment)', 'PemesananProdukController@tampilDetailTreatment');
 Route::post('/registerMemberPost', 'MemberController@registerMemberPost');
-Route::get('/logoutMember', 'MemberController@logoutMember');
-
 Route::get('/', 'HalamanMemberController@tampil');
+
+
+
+Route::post('/loginPost', 'LoginController@loginPost');
+Route::get('/logout', 'LoginController@logout');

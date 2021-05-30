@@ -9,13 +9,15 @@ use DB;
 
 class CrudMemberController extends Controller
 {
-    public function index(){
 
-        $datas	= DB::table('member')
-           ->join('klinik','klinik.id_klinik', '=', 'klinik.id_klinik')
-           ->select('member.*','klinik.*')
-           ->get();
-       $kliniks	= KlinikModel::all();
+	public function tampil(){
+		return view('admin_klinik.DashboardAdmin');
+}
+
+public function index(){
+
+        $datas		= MemberModel::with('klinik')->get();
+       	$kliniks	= KlinikModel::all();
        return view('admin_klinik.member.member', compact('datas', 'kliniks'));
 }
 
@@ -27,9 +29,9 @@ public function create(Request $request){
 	    'ttl'			=> 'required',
 	    'jk'			=> 'required',
 	    'no_hp'			=> 'required',
-	    'email'			=> 'required|unique',
+	    'email'			=> 'required|unique:member,email',
 	    'password'		=> 'required',
-	    'klinik'		=> 'id_klinik',
+	    'klinik'		=> 'required',
 	],
 	[
 		'nama.required'		=> 'Nama harus diisi',
@@ -42,12 +44,16 @@ public function create(Request $request){
 	]);
 
 	$data = new MemberModel();
+	$data->id_klinik	= $request->klinik;
 	$data->nama_member	= $request->nama_member;
 	$data->ttl 			= $request->ttl;
 	$data->jk			= $request->jk;
 	$data->no_hp 		= $request->no_hp;
 	$data->email 		= $request->email;
 	$data->password 	= bcrypt($request->password);
+	$data->save();
+
+	return redirect()->back()->with('success', 'Data berhasil ditambah');
 
     }
 

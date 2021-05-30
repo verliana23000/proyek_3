@@ -55,10 +55,10 @@
       
       <div class="btn-group ms-4">
         <button type="button" class="btn btn-outline-info py-1 px-3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        {{Session('nama_member')}}
+        {{ Auth::guard('member')->user()->nama_member }}
         </button>
         <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="{{('/logoutMember')}}">Logout</a></li>
+        <li><a class="dropdown-item" href="{{('/logout')}}">Logout</a></li>
         </ul>
       </div>
     </div>

@@ -71,24 +71,24 @@
                 </div>
       @endif
                 <div class="modal-body">
-                  <form action="{{ url('/loginMemberPost') }}" method="post" class="form">
+                  <form action="{{ url('/loginPost') }}" method="post" class="form">
                   {{ csrf_field() }}
 
                   <div class="form-group input-rounded">
                     <label>Email</label>
                       <input type="email" class="form-control" placeholder="Masukkan Email" name="email" />
-                    </div><br>
+                  </div><br>
 
-                    <div class="form-group input-rounded">
+                  <div class="form-group input-rounded">
                     <label> Password </label>
                       <input type="password" class="form-control" placeholder="Masukkan Password" name="password" />
-                    </div><br>
+                  </div><br>
 
-                    <div class="form-inline">
-                      <div class="btn">
-                        <label> Belum punya akun ? <a href="{{ url('daftar') }}">Buat Akun Baru</a>
-                        </label> 
-                      </div>
+                  <div class="form-inline">
+                    <div class="btn">
+                      <label> Belum punya akun ? <a href="{{ url('daftar') }}">Buat Akun Baru</a>
+                      </label> 
+                    </div>
                   </div>
       
         <input id="submit" type="submit" name="submit" value="LOGIN" />

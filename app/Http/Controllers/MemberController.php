@@ -4,53 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\Member as MemberResources;
+use App\AdminModel;
 use App\MemberModel;
 use App\KlinikModel;
 use Hash;
-use Session;
 
 class MemberController extends Controller{
 	
-public function index(){
-	if(!Session::get('login')){
-		return view('Member/DashboardMember');
-	}
-	else{
-		return view('home_member');
-	}
-}
-
-public function loginMemberPost  (Request $request){
-	$email		= $request->email;
-	$password	= $request->password;
-
-	$data = MemberModel::where('email',$email)->first();
-	if($data){
-		if(Hash::check($password,$data->password)){
-			Session::put('nama_member',$data->nama_member);
-			Session::put('email',$data->email);
-			Session::put('id_member',$data->id_member);
-			Session::put('loginMemberPost',TRUE);
-		return redirect('member/DashboardMember');
-	} 
-	else {
-		
-		return view('/')->with('ERROR ! Email atau Password salah !');
-	}
-}
-	else {
-		return view('/')->with('ERROR ! Email atau Password salah !');
-		
-	}
-}
-
-public function logoutMember(){
-	Session::flush();
+public function tampil(){
 	return redirect('/');
 }
 
 public function registerMember(Request $request){
-	return view('home_member');
+	return redirect('/');
 }
 
 public function registerMemberPost(Request $request){
@@ -80,7 +46,7 @@ public function registerMemberPost(Request $request){
 	$data->password 	= bcrypt($request->password);
 
 	$data->save();
-	return redirect('home_member');
+	return redirect('/');
 
 		}
 	}

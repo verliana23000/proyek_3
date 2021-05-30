@@ -83,6 +83,16 @@
                                                 placeholder="Masukan No Hp"></textarea>
                                         </div>
                                         <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                placeholder="Masukan Email"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                placeholder="Masukan Password"></textarea>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="deskripsi">Deskripsi</label>
                                             <input type="text" class="form-control" id="deskripsi" name="deskripsi"
                                                 placeholder="Masukan Deskripsi"></textarea>
@@ -113,6 +123,7 @@
                                 <th>Nama Klinik</th>
                                 <th>Alamat</th>
                                 <th>No Hp</th>
+                                <th>Email</th>
                                 <th>Deskripsi</th>
                                 <th>Logo</th>
                                 <th>Validasi</th>
@@ -125,24 +136,21 @@
                                 <td>{{$data->nama_klinik}}</td>
                                 <td>{{$data->alamat}}</td>
                                 <td>{{$data->no_hp}}</td>
+                                <td>{{$data->email}}</td>
                                 <td>{{$data->deskripsi}}</td>
                                 <td><img width="150px" src="{{ url('admin/img/logo/'.$data->logo) }}"></td>
 
-                                <!-- <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#detailProduk{{$data->id_klinik}}">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#detailTreatment{{$data->id_klinik}}">
-                                        <i class="fas fa-eye"></i>
-                                    </button>
-                                </td> -->
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#edit-data-{{$data->id_klinik}}">
-                                        <i class="fas fa-user-edit"></i>
+                                        data-target="#detailProduk{{$data->id_klinik}}">
+                                        <i class="fas fa-pencil-alt"></i>
                                     </button>
+                                    <form action="{{url('deleteKlinik', $data->id_klinik)}}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

@@ -63,7 +63,7 @@
                                     </button>
                                 </div>
 
-                                <form action="/loginMemberPost" method="POST">
+                                <form action="/addMember" method="POST">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -115,9 +115,9 @@
                                             </select>
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-danger"
+                                    <button type="button" class="btn btn-outline-success"
                                             data-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                        <button class="btn btn-success">Simpan</button>
                                     </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                                 <td>{{$data->jk}}</td>
                                 <td>{{$data->no_hp}}</td>
                                 <td>{{$data->email}}</td>
-                                <td>{{$data->nama_klinik}}</td>
+                                <td>{{$data->klinik->nama_klinik}}</td>
                                 <td>
                                     <form action="{{url('deleteMember', $data->id_member)}}" method="POST" class="d-inline">
                                         @csrf

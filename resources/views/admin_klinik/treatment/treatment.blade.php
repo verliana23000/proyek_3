@@ -102,12 +102,12 @@
                                             data-dismiss="modal">Tutup</button>
                                         <button type="submit" class="btn btn-success">Simpan</button>
                                     </div>
-                                    </div>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-                </form>
+            </form>
 
                 {{-- Akhir Modal Tambah --}}
 
@@ -139,7 +139,7 @@
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#edit-data-{{$data->id_treatment}}">
-                                        <i class="fas fa-user-alt"></i>
+                                        <i class="fas fa-pencil-alt"></i>
                                     </button>
                                     <form action="{{url('deleteTreatment', $data->id_treatment)}}" method="POST" class="d-inline">
                                         @csrf

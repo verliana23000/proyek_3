@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class KlinikModel extends Model
+class KlinikModel extends Authenticatable
 {
     protected $table		= 'klinik'; //nama tabel
     protected $primaryKey 	= 'id_klinik'; //primary key
@@ -12,9 +12,15 @@ class KlinikModel extends Model
     'nama_klinik',
     'alamat',
     'no_hp',
+    'email',
+    'password',
     'deskripsi',
     'logo'
     ]; //field 
+
+    public function member(){
+        return $this->hasMany(MemberModel::class,'id_member');
+    }
 
     public function produk(){
         return $this->hasMany(ProdukModel::class,'id_produk');

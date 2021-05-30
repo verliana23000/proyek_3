@@ -2,11 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class AdminsModel extends Model
+class AdminModel extends Authenticatable
 {
-    protected $table		= 'admins'; //nama tabel
+    protected $table		= 'admin'; //nama tabel
     protected $primaryKey 	= 'id_admin'; //primary key
     protected $fillable		= [
     	'nama',

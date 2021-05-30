@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\AdminsModel;
+use App\AdminModel;
 class AdminSeeder extends Seeder
 {
     /**
@@ -11,7 +11,7 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        AdminsModel::create([
+        AdminModel::create([
         'nama'      =>'iis',
     	'jk'        =>'Perempuan',
     	'alamat'    =>'Plumbon', 
