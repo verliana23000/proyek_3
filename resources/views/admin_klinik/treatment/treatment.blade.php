@@ -92,7 +92,7 @@
                                               name="klinik" id="klinik" style="width: 100%">
                                             <option value="">Pilih Klinik</option>  
                                             @foreach ($kliniks as $klinik)
-                                            <option value="{{$klinik->id_klinik}}">{{$klinik->nama_klinik}}
+                                            <option value="{{$klinik->id_klinik}}">{{ ($klinik->nama_klinik) }}
                                             </option>
                                             @endforeach
                                             </select>
@@ -135,7 +135,7 @@
                                 <td>{{$data->jenis_treatment}}</td>
                                 <td>@rupiah($data->harga_treatment)</td>
                                 <td><img width="150px" src="{{url('admin/img/gambar_produk/gambar_treatment/'.$data->gambar)}}"></td>
-                                <td>{{$data->nama_klinik}}</td>                              
+                                <td>{{$data->klinik->nama_klinik}}</td>                              
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#edit-data-{{$data->id_treatment}}">

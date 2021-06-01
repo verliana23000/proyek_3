@@ -10,13 +10,9 @@ use DB;
 class TreatmentController extends Controller
 {
     public function index(){
-    	$datas	= DB::table('treatment')
-    	->join('klinik','klinik.id_klinik', '=', 'klinik.id_klinik')
-    	->select('treatment.*','klinik.*')
-    	->get();
-		
-    $kliniks	= KlinikModel::all();
-    return view('admin_klinik.treatment.treatment', compact('datas','kliniks'));
+		$datas		= TreatmentModel::with('klinik')->get();
+		$kliniks	= KlinikModel::all();
+		return view('admin_klinik.treatment.treatment', compact('datas','kliniks'));
 
 }
 

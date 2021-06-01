@@ -15,5 +15,12 @@ class PemesananProdukModel extends Model
     'ket_batal'
     ]; //field 
 
+    public function klinik(){
+      return $this->belongsTo(KlinikModel::class,'id_klinik');
+  }
+
+  public function member(){
+    return $this->belongsTo(MemberModel::class,'id_member');
+}
     
 }

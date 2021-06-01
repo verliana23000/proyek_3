@@ -138,12 +138,11 @@
                                 <td>{{$data->no_hp}}</td>
                                 <td>{{$data->email}}</td>
                                 <td>{{$data->deskripsi}}</td>
-                                <td><img width="150px" src="{{ url('admin/img/logo/'.$data->logo) }}"></td>
-
+                                <td><img width="150px" src="{{ asset('admin/img/logo/'.$data->logo) }}"></td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#detailProduk{{$data->id_klinik}}">
-                                        <i class="fas fa-pencil-alt"></i>
+                                        <i class="fas fa-eye"></i>
                                     </button>
                                     <form action="{{url('deleteKlinik', $data->id_klinik)}}" method="POST" class="d-inline">
                                         @csrf
@@ -223,7 +222,7 @@
 @endforeach -->
    
    <!-- Modal Detail -->
-                            @foreach($datas as $klinik)
+                            @foreach($detail as $klinik)
                             <div class="modal fade" tabindex="-1" role="dialog" id="detailProduk{{$klinik->id_klinik}}" aria-hidden="true">
                                 <div class="modal-dialog modal-xl" role="document">
                                     <div class="modal-content">
@@ -246,51 +245,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($klinik->produk as $produk)
+                                    @foreach($detail as $produks)
                                     <tr>
                                         <td scope="row">{{$loop->iteration}}</td>
-                                        <td>{{$produk->nama_produk}}</td>
-                                        <td>{{$produk->jenis_produk}}</td>
-                                        <td>{{$produk->harga_produk}}</td>
-                                        <td>{{$produk->stok}}</td>
-                                        <td><img width="150px" src="{{asset('admin/img/gambar_produk/'.$produk->gambar_produk)}}"></td>
+                                        <td>{{$produks->nama_produk}}</td>
+                                        <td>{{$produks->jenis_produk}}</td>
+                                        <td>{{$produks->harga_produk}}</td>
+                                        <td>{{$produks->stok}}</td>
+                                        <td><img width="150px" src="{{asset('admin/img/gambar_produk/'.$produks->gambar)}}"></td>
                                     </tr>
                                     @endforeach
                                 </tbody>
+                                </table>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
         @endforeach
 
-<!-- Modal Detail -->
-<!-- @foreach($datas as $klinik)
-            <div class="modal fade" tabindex="-1" role="dialog" id="detailTreatment{{$klinik->id_klinik}}" aria-hidden="true">
-                <div class="modal-dialog modal-xl" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">List Treatment {{ $klinik->nama_klinik }}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <table class="table table-bordered table-hover table-responsive-lg example1">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama Treatment</th>
-                                        <th>Jenis Treatment</th>
-                                        <th>Harga</th>
-                                        <th>Gambar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($klinik->treatment as $treatment)
-                                    <tr>
-                                        <td scope="row">{{$loop->iteration}}</td>
-                                        <td>{{$treatment->nama_treatment}}</td>
-                                        <td>{{$treatment->jenis_treatment}}</td>
-                                        <td>{{$treatment->harga_treatment}}</td>
-                                        <td><img width="150px" src="{{asset('admin/img/gambar_produk/gambar_treatment/'.$treatment->gambar_treatment)}}"></td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>                 
-@endforeach -->
 @endsection

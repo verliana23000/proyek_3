@@ -17,7 +17,7 @@ class TreatmentModel extends Model
 
     ]; //field
 
-    public function Klinik(){
-        return $this->belongsTo(TreatmentModel::class,'id_treatment');
+    public function klinik(){
+        return $this->belongsTo(KlinikModel::class,'id_klinik');
     }
 }

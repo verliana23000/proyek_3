@@ -26,6 +26,10 @@ class MemberModel extends Authenticatable
         return $this->hasToMany(PemesananProdukModel::class,'detail_pemesanan_produk', 'id_pp', 'id_produk');
     }
 
+    public function pembayaranProduk(){
+        return $this->hasToMany(PembayaranProdukModel::class, 'id_pembayaran_produk');
+    }
+
     public function PemesananTreatment(){
         return $this->hasToMany(PemesananProdukModel::class,'detail_pemesanan_treatment', 'id_pt', 'id_treatment');
     }

@@ -88,11 +88,11 @@
               </div>
             <div class="btn-group">
             <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-            <img width="42" class="rounded-circle" src="{{ url('admin/assets/images/avatars/'.Session::get('foto')) }}" alt="">
+            <img width="42" class="rounded-circle" alt="">
             <b>{{ Auth::guard('klinik')->user()->nama_klinik }}</b>
             <i class="fa fa-angle-down ml-2 opacity-8"></i>
             </a>
-            <a href="{{ url ('/logout') }}" tabindex="0" class="dropdown-item">Log Out</a>
+            <a href="{{ url ('/logout') }}" tabindex="0" class="dropdown-item">Logout</a>
             </div>
             </li>
           </ul>

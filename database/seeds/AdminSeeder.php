@@ -12,11 +12,11 @@ class AdminSeeder extends Seeder
     public function run()
     {
         AdminModel::create([
-        'nama'      =>'iis',
+        'nama'      =>'verli',
     	'jk'        =>'Perempuan',
-    	'alamat'    =>'Plumbon', 
-    	'email'     =>'iisimut@gmail.com',
-    	'password'  =>Hash::make('iis123'),
+    	'alamat'    =>'Balongan', 
+    	'email'     =>'verli@gmail.com',
+    	'password'  =>bcrypt('12345678'),
         ]);
     }
 }

@@ -177,7 +177,7 @@
   <div class="widget-content-wrapper text-black">
   <div class="widget-content-left">
   <div class="widget-heading">Data Antrian</div>
-  <div class="widget-subheading">Antrian Dokter</div>
+  <div class="widget-subheading">Antrian Treatment</div>
   </div>
   <div class="widget-content-right">
   <div class="widget-numbers text-black">

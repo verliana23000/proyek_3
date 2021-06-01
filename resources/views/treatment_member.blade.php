@@ -82,10 +82,8 @@
                 alt="Image" width="250px" height="250px"></center>
               <p class="px-3 mb-4 mt-3">
                     <span style="color: black">{{$treatment->nama_treatment}}</span> <br>
-                    @foreach ($kliniks as $klinik)
-                    <span style="color: black"> {{ ($klinik->nama_klinik) }}
-                    </span>
-                    @endforeach<br>
+                    <span style="color: black">{{($treatment->klinik->nama_klinik)}}</span>
+                    <br>
                     <span style="color: green">Rp. {{$treatment->harga_treatment}}</span> <br>
                 <center>
                         <a href="{{url('/DetailPemesananTreatment'.$treatment->id_treatment)}}" class="btn btn-outline-success py-1 px-3" >

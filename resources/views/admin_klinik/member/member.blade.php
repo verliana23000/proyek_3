@@ -106,13 +106,13 @@
                                                 placeholder="Masukan Password">
                                         </div>
                                         <label for="klinik">Klinik</label>
-                                            <select class="select2-single-placeholder form-control" name="klinik" id="klinik" style="width: 100%">
+                                        <select class="select2-single-placeholder form-control" name="klinik" id="klinik" style="width: 100%">
                                             <option value="">Pilih Klinik</option>  
                                             @foreach ($kliniks as $klinik)
                                             <option value="{{$klinik->id_klinik}}">{{ ($klinik->nama_klinik) }}
                                             </option>
                                             @endforeach
-                                            </select>
+                                        </select>
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-success"

@@ -7,15 +7,13 @@ use App\MemberModel;
 use App\KlinikModel;
 use DB;
 
-class CrudMemberController extends Controller
-{
+class CrudMemberController extends Controller{
 
 	public function tampil(){
 		return view('admin_klinik.DashboardAdmin');
 }
 
-public function index(){
-
+	public function index(){
         $datas		= MemberModel::with('klinik')->get();
        	$kliniks	= KlinikModel::all();
        return view('admin_klinik.member.member', compact('datas', 'kliniks'));

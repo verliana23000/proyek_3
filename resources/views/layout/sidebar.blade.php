@@ -39,8 +39,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Produk</h6>
             <a class="collapse-item" href="{{url('/produk')}}">Produk</a>
-            <a class="collapse-item" href="{{url('/pemesanan_produk')}}">Pemesanan Produk</a>
-            <a class="collapse-item" href="{{url('/pembayaran_produk')}}">Pembayaran Produk</a>
+            <a class="collapse-item" href="{{url('/pemesanan_produk/pemesanan_produk')}}">Pemesanan Produk</a>
+            <a class="collapse-item" href="{{url('/pemesanan_produk/pembayaran_produk')}}">Pembayaran Produk</a>
 
           </div>
         </div>

@@ -10,11 +10,11 @@ class AdminModel extends Authenticatable
     protected $table		= 'admin'; //nama tabel
     protected $primaryKey 	= 'id_admin'; //primary key
     protected $fillable		= [
-    	'nama',
-    	'jk',
-    	'alamat', 
-    	'email',
-    	'password',
+    'nama',
+    'jk',
+    'alamat',
+    'email',
+    'password',		
     ]; //field 
     
 }

@@ -25,6 +25,10 @@ Route::get('daftar', function () {
     return view('daftar');
 });
 
+Route::get('daftarKlinik', function () {
+    return view('daftarKlinik');
+});
+
 Route::get('super_index', function () {
     return view('super_admin/super_index');
 });
@@ -37,15 +41,19 @@ Route::get('admin_klinik/index', function () {
 //======================= Super Admin ==================================
 Route::get('/super_admin/DashboardSuper','KlinikController@tampil');
 
+Route::get('klinik', 'KlinikController@index');
 Route::post('addKlinik', 'KlinikController@create');
 Route::put('editKlinik{id}','KlinikController@update');
-Route::delete('deleteKlinik{id_klinik}','KlinikController@delete');
+Route::delete('deleteKlinik{id}','KlinikController@delete');
+
+Route::get('/registerKlinik', 'KlinikController@registerKlinik');
+Route::post('registerKlinikPost', 'KlinikController@registerKlinikPost');
 
 
 //========================Admin Klinik==================================
 
 Route::get('/admin_klinik/DashboardAdmin','CrudMemberController@tampil');
-
+Route::get('/member','CrudMemberController@index');
 Route::post('addMember','CrudMemberController@create');
 Route::delete('deleteMember/{id}','CrudMemberController@delete');
 
@@ -54,13 +62,18 @@ Route::post('addProduk', 'ProdukController@create');
 Route::put('editProduk/{id}','ProdukController@update');
 Route::delete('deleteProduk/{id}','ProdukController@delete');
 
-Route::get('pemesanan_produk','PemesananProdukController@index');
-Route::post('addPemesanan_produk', 'PemesananProdukController@create');
-Route::put('editPemesanan_produk/{id}','PemesananProdukController@update');
-Route::delete('deletePemesanan_produk/{id}','PemesananProdukController@delete');
+Route::get('/pemesanan_produk/pemesanan_produk','PemesananProdukController@index');
+Route::put('/pemesanan_produk/ubahStatus/{id}','PemesananProdukController@update');
+Route::delete('/pemesanan_produk/hapusPemesanan/{id}','PemesananProdukController@delete');
+Route::post('/pemesanan_produk/konfirmasiPemesanan/{id}','PemesananProdukController@konfirmasi');
+Route::get('/pemesanan_produk/batalPemesanan/{id}','PemesananProdukController@batalkan');
+Route::post('/pemesanan_produk/dibatalkanPemesanan/{id}','PemesananProdukController@aksibatal');
+Route::get('/pemesanan_produk/diambilPemesanan/{id}','PemesananProdukController@diambil');
 
-Route::get('pembayaran_produk','PembayaranProdukController@index');
-Route::delete('deletePembayaran_produk/{id}','PembayaranProdukController@delete');
+Route::get('/pemesanan_produk/pembayaran_produk','PembayaranProdukController@index');
+Route::get('/pemesanan_produk/validasiPembayaran/{id_pp}','PembayaranProdukController@validasiBayar');
+Route::get('/pemesanan_produk/batalPembayaran/{id_pp}','PembayaranProdukController@BayarBatal');
+Route::get('/pemesanan_produk/deletePembayaranProduk{id_pp}','PembayaranProdukController@BayarBatal');
 
 
 

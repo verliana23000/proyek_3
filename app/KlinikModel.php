@@ -23,10 +23,14 @@ class KlinikModel extends Authenticatable
     }
 
     public function produk(){
-        return $this->hasMany(ProdukModel::class,'id_produk');
+        return $this->hasMany(ProdukModel::class, 'id_produk');
     }
 
     public function treatment(){
         return $this->hasMany(TreatmentModel::class,'id_treatment');
+    }
+
+    public function pemesanan_produk(){
+        return $this->hasMany(PemesananProdukModel::class,'id_pp');
     }
 }

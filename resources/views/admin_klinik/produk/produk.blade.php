@@ -116,6 +116,7 @@
                                 <th>Harga</th>
                                 <th>Stok</th>
                                 <th>Gambar</th>
+                                <th>Klinik</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -128,6 +129,7 @@
                                 <td>@rupiah($data->harga_produk)</td>
                                 <td>{{$data->stok}}</td>
                                 <td><img width="150px" src="{{url('admin/img/gambar_produk/'.$data->gambar)}}"></td>
+                                <td>{{$data->klinik->nama_klinik}}</td>                              
                                 <td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
                                         data-target="#edit-data-{{$data->id_produk}}">
