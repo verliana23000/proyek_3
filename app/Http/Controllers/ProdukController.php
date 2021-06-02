@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\ProdukModel;
 use App\KlinikModel;
 use DB;
@@ -10,17 +11,13 @@ use DB;
 class ProdukController extends Controller
 {
     public function index(){
-
-     $datas	= DB::table('produk')
-    	->join('klinik','klinik.id_klinik', '=', 'klinik.id_klinik')
-    	->select('produk.*','klinik.*')
-    	->get();
-    $kliniks	= KlinikModel::all();
-    return view('admin_klinik.produk.produk', compact('datas', 'kliniks'));
+	$data		= auth()->guard('klinik')->user();
+	$datas		= ProdukModel::with('klinik')->where('id_klinik', $data->id_klinik)->get();
+	$kliniks	= KlinikModel::all();
+    return view('admin_klinik.produk.produk', compact('datas','kliniks'));
 }
 
 public function create(Request $request){
-
 
 	$this->validate($request, [
 		'nama_produk'	=> 'required',
@@ -107,7 +104,7 @@ public function update($id_produk, Request $request)
 public function delete($id_produk)
     {
         $data = ProdukModel::findOrFail($id_produk);
-        try {
+        try {	
             $data->delete();
             return redirect()->back()->with('success', 'Data berhasil dihapus');
         } catch (\Throwable $th) {

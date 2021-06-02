@@ -63,7 +63,7 @@
                                     </button>
                                 </div>
 
-                                <form action="/loginMemberPost" method="POST">
+                                <form action="/addMember" method="POST">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
@@ -106,18 +106,18 @@
                                                 placeholder="Masukan Password">
                                         </div>
                                         <label for="klinik">Klinik</label>
-                                            <select class="select2-single-placeholder form-control" name="klinik" id="klinik" style="width: 100%">
+                                        <select class="select2-single-placeholder form-control" name="klinik" id="klinik" style="width: 100%">
                                             <option value="">Pilih Klinik</option>  
                                             @foreach ($kliniks as $klinik)
                                             <option value="{{$klinik->id_klinik}}">{{ ($klinik->nama_klinik) }}
                                             </option>
                                             @endforeach
-                                            </select>
+                                        </select>
                                     </div>
                                     <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-danger"
+                                    <button type="button" class="btn btn-outline-success"
                                             data-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                        <button class="btn btn-success">Simpan</button>
                                     </div>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                                 <td>{{$data->jk}}</td>
                                 <td>{{$data->no_hp}}</td>
                                 <td>{{$data->email}}</td>
-                                <td>{{$data->nama_klinik}}</td>
+                                <td>{{$data->klinik->nama_klinik}}</td>
                                 <td>
                                     <form action="{{url('deleteMember', $data->id_member)}}" method="POST" class="d-inline">
                                         @csrf

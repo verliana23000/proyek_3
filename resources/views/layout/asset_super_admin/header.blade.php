@@ -88,15 +88,10 @@
               </div>
             <div class="btn-group">
             <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-            <img width="42" class="rounded-circle" src="{{ url('admin/assets/images/avatars/'.Session::get('foto')) }}" alt="">
-            <b>{{Session::get('nama')}}</b>
-            <i class="fa fa-angle-down ml-2 opacity-8"></i>
-            </a>
-            <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-            <a href="{{url ('/admin/UbahProfile')}}{{Session::get('id_admin')}}" tabindex="0" class="dropdown-item">Ubah Profil</a>
-            <div tabindex="-1" class="dropdown-divider">
-            </div>
-            <a href="{{ url ('logout') }}" tabindex="0" class="dropdown-item">Log Out</a>
+            <img width="42" class="rounded-circle" alt="">
+            <i class="fa fa-angle-down ml-2 opacity-8">
+            <b>{{ Auth::guard('admin')->user()->nama }}</b>
+            <a href="{{ url ('/logout') }}" tabindex="0" class="dropdown-item">Logout</a></i>
             </div>
             </li>
           </ul>

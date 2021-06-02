@@ -37,34 +37,30 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Login</h4>
-							<form action="{{ url('/loginAdminPost') }}" method="post" class="form">
-                  			{{ csrf_field() }}
-								<div class="form-group">
-									<label for="email">Email</label>
-									<input id="email" type="email" class="form-control" name="email" required autofocus>
-								</div>
+							<div class="modal-body">
+                  <form action="{{ url('/loginAdminPost') }}" method="post" class="form">
+                  {{ csrf_field() }}
 
-								<div class="form-group">
-									<label for="password">Password</label>
-                                    <input id="password" type="password" class="form-control" name="password" required autofocus>							    	</div>
-								</div>
+				  	<div class="form-group">
+						<label>Email</label>
+						<input type="email" class="form-control" name="email">
+					</div>
+                  <div class="form-group">
+                    <label> Password </label>
+                      <input type="password" class="form-control" name="password" />
+                  </div><br>
+				<div class="mt-4 text-center">
+					Don't have an account? <a href="register.html">Create One</a>
+				</div>
+      <div class="form-group m-0">
+        <button type="submit" class="btn btn-primary btn-block">LOGIN
+		<!-- <input id="submit" type="submit" name="submit" value="LOGIN" /> -->
+        </button>
+		</div>
+		</form>
 
-								<div class="form-group">
-									<div class="custom-checkbox custom-control">
-										<input type="checkbox" name="remember" id="remember" class="custom-control-input">
-										<label for="remember" class="custom-control-label">Remember Me</label>
-									</div>
-								</div>
-
-								<div class="form-group m-0">
-									<button type="submit" class="btn btn-primary btn-block">
-										Login
-									</button>
-								</div>
-								<div class="mt-4 text-center">
-									Don't have an account? <a href="register.html">Create One</a>
-								</div>
-							</form>
+      
+    </div>
 						</div>
 					</div>
 				</div>

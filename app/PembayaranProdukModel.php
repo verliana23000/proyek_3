@@ -18,4 +18,9 @@ class PembayaranProdukModel extends Model
     	return $this->belongsTo(PemesananProdukModel::class,'id_pp');
         
     } 
+
+    public function member(){
+    	return $this->belongsTo(MemberModel::class,'id_member');
+        
+    } 
 }

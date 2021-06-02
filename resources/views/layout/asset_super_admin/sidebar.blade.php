@@ -8,7 +8,7 @@
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="{{url('/index')}}">
+        <a class="nav-link" href="{{url('/DashboardSuper')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>

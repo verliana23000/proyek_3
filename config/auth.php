@@ -46,6 +46,21 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+
+        'klinik' => [
+            'driver' => 'session',
+            'provider' => 'klinik',
+        ],
+
+        'member' => [
+            'driver' => 'session',
+            'provider' => 'member',
+        ],
     ],
 
     /*
@@ -69,6 +84,18 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\AdminModel::class,
+        ],
+        'klinik' => [
+            'driver' => 'eloquent',
+            'model' => App\KlinikModel::class,
+        ],
+        'member' => [
+            'driver' => 'eloquent',
+            'model' => App\MemberModel::class,
         ],
 
         // 'users' => [

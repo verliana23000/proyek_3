@@ -14,9 +14,16 @@ class PemesananProdukModel extends Model
     'metode_pembayaran',
     'ket_batal'
     ]; //field 
-
+    
     public function detailpp(){
       return $this->hasMany(DetailPemesananProdukModel::class,'id_pp');
   }
+    public function klinik(){
+      return $this->belongsTo(KlinikModel::class,'id_klinik');
+  }
+
+  public function member(){
+    return $this->belongsTo(MemberModel::class,'id_member');
+}
     
 }

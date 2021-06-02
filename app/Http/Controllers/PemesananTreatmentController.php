@@ -12,7 +12,7 @@ use DB;
 class PemesananTreatmentController extends Controller
 {
     public function tampilTreatment(){
-        $treatments = TreatmentModel:: all();
+        $treatments = TreatmentModel::all();
         $kliniks    = KlinikModel::get();
         return view('treatment_member', compact('treatments', 'kliniks'));
     }

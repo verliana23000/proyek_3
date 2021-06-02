@@ -5,7 +5,7 @@
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
   <h1 class="h3 mb-0 text-gray-800">Dashboard admin klinik</h1>
   <ol class="breadcrumb">
-  <li class="breadcrumb-item"><a href="{{url('/index')}}">Home</a></li>
+  <li class="breadcrumb-item"><a href="{{url('/DashboardAdmin')}}">Home</a></li>
   <li class="breadcrumb-item active" aria-current="page">Dashboard admin klinik</li>
   </ol>
 </div>
@@ -177,7 +177,7 @@
   <div class="widget-content-wrapper text-black">
   <div class="widget-content-left">
   <div class="widget-heading">Data Antrian</div>
-  <div class="widget-subheading">Antrian Dokter</div>
+  <div class="widget-subheading">Antrian Treatment</div>
   </div>
   <div class="widget-content-right">
   <div class="widget-numbers text-black">

@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class MemberModel extends Model
+class MemberModel extends Authenticatable
 {
     protected $table		= 'member'; //nama tabel
     protected $primaryKey 	= 'id_member'; //primary key
@@ -18,12 +18,16 @@ class MemberModel extends Model
         'id_klinik',
     ]; //field
 
-    public function Klinik(){
-        return $this->belongsTo('App\KlinikModel','id_klinik');
+    public function klinik(){
+        return $this->belongsTo(KlinikModel::class,'id_klinik');
     }
 
     public function PemesananProduk(){
         return $this->hasToMany(PemesananProdukModel::class,'detail_pemesanan_produk', 'id_pp', 'id_produk');
+    }
+
+    public function pembayaranProduk(){
+        return $this->hasToMany(PembayaranProdukModel::class, 'id_pembayaran_produk');
     }
 
     public function PemesananTreatment(){

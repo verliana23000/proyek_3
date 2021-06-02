@@ -52,13 +52,13 @@
           <li><a><button class="btn btn-outline-info py-1 px-3" data-bs-toggle="modal" data-bs-target="#login" >Login</button></a></li>
 
 <!-- Modal -->
-<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">LOGIN </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">LOGIN </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
 
       @if(\Session::has('alert'))
                 <div class="alert alert-danger">
@@ -71,24 +71,24 @@
                 </div>
       @endif
                 <div class="modal-body">
-                  <form action="{{ url('/loginMemberPost') }}" method="post" class="form">
+                  <form action="{{ url('/loginPost') }}" method="post" class="form">
                   {{ csrf_field() }}
 
                   <div class="form-group input-rounded">
                     <label>Email</label>
                       <input type="email" class="form-control" placeholder="Masukkan Email" name="email" />
-                    </div><br>
+                  </div><br>
 
-                    <div class="form-group input-rounded">
+                  <div class="form-group input-rounded">
                     <label> Password </label>
                       <input type="password" class="form-control" placeholder="Masukkan Password" name="password" />
-                    </div><br>
+                  </div><br>
 
-                    <div class="form-inline">
-                      <div class="btn">
-                        <label> Belum punya akun ? <a href="{{ url('daftar') }}">Buat Akun Baru</a>
-                        </label> 
-                      </div>
+                  <div class="form-inline">
+                    <div class="btn">
+                      <label> Belum punya akun ? <a href="{{ url('daftar') }}">Buat Akun Baru</a>
+                      </label> 
+                    </div>
                   </div>
       
         <input id="submit" type="submit" name="submit" value="LOGIN" />
@@ -121,9 +121,11 @@
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url(admin/img/slide/maskeran.jpg)">
+        <div class="carousel-item" style="background-image: url(admin/img/maskeran.jpg)">
           <div class="carousel-container">
             <div class="container">
+            <h2 class="animate__animated animate__fadeInDown">Welcome to <span>E-Beauty</span></h2>
+              <p>Daftarkan klinik kamu dan gabung bersama kami</p> <a href="{{ url('daftarKlinik') }}">Buat Akun Baru</a>
             </div>
           </div>
         </div>
@@ -151,15 +153,15 @@
         </div>
       </div>
     </section><!-- End About Us Section -->
-  
-    
-    <!-- ***** Testimonials Starts ***** -->
+    <div class="section-title">
+          <h2>Daftar Klinik Kecantikan</h2>
+        </div>
     <section class="section" id="testimonials">
         <div class="container">
             <div class="row">
             <div class="col-lg-12">
                     <div class="section-heading">
-                        <br><h3 style="color: black">Daftar Klinik Kecantikan</h3></br>
+                        <br><h3 style="color: black"></h3></br>
                     </div>
                 </div>
             @foreach ($klinik as $klinik)

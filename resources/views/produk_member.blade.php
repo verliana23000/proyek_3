@@ -85,10 +85,7 @@
               <p class="px-3 mb-4 mt-3">
 
                     <span style="color: black">{{$produk->nama_produk}}</span>
-                    @foreach ($kliniks as $klinik)
-                    <span style="color: black"> {{ ($klinik->nama_klinik) }}
-                    </span>
-                    @endforeach <br>
+                    <span style="color: black">{{($produk->klinik->nama_klinik)}}</span><br>
                     @if($produk->stok <=0)
                     <span class="badge badge-danger">Habis</span>
                     @else

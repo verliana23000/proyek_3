@@ -5,7 +5,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard Pemesanan Produk</h1>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{url('/index')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">Dashboard Pemesanan Produk</li>
         </ol>
     </div>
@@ -41,82 +41,6 @@
                     </div>
                     @endif
                 </div>
-
-              <!--   {{-- Modal Tambah --}}
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <button type="button" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal"
-                        data-target="#exampleModal" id="#myBtn">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-plus"></i>
-                        </span>
-                        <span class="text">Tambah Data Pemesanan Produk</span>
-                    </button>
-
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Pemesanan Produk</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <form action="addProduk" method="POST" enctype="multipart/form-data">
-                                    @csrf
-
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="nama_member">Nama Member</label>
-                                            <input type="text" class="form-control" id="nama_member" name="nama_member"
-                                                placeholder="Masukan nama member">
-                                   </div>
-
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="nama_produk">Nama Produk</label>
-                                            <input type="text" class="form-control" id="nama_produk" name="nama_produk"
-                                                placeholder="Masukan nama produk">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="jenis_produk">Jenis Produk</label>
-                                            <input type="text" class="form-control" id="alamat" name="jenis_produk"
-                                                placeholder="Masukan jenis produk">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="harga_produk">Harga</label>
-                                            <input type="numeric" class="form-control" id="harga" name="harga_produk"
-                                                placeholder="Masukan harga produk"></textarea>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="stok">Stok</label>
-                                            <input type="numeric" class="form-control" id="stok" name="stok"
-                                                placeholder="Masukan stok"></textarea>
-                                        </div>
-                                        <label>Gambar</label>
-                                        <div class="custom-file">
-                                        <input type="file" name="gambar" id="gambar">
-                                        <br><label class="text-primary" for="gambar">* Ukuran maksimal 2 Mb</label>
-                                      </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-danger"
-                                            data-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-success">Simpan</button>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-               <!--  </form> -->
-
-                <!-- {{-- Akhir Modal Tambah --}} -->
-
                 <div class="table-responsive p-3">
                     <table class="table align-items-center table-flush" id="dataTable">
                         <thead class="thead-light">
@@ -124,25 +48,72 @@
                                 <th>No.</th>
                                 <th>Nama Member</th>
                                 <th>No. Hp</th>
+                                <th>Tanggal Pemesanan</th>
                                 <th>Status Pemesanan</th>
+                                <th>Keterangan Batal</th>
                                 <th>Metode Pembayaran</th>
+                                <th>Detail</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $no=1;
+                            @endphp
                             @foreach ($datas as $data)
                             <tr>
                                 <th scope="row">{{$loop->iteration}}</th>
-                                <td>{{$data->nama_member}}</td>
-                                <td>{{$data->no_hp}}</td>
-                                <td>{{$data->status}}</td>
-                                <td>{{$data->metode_pembayaran}}</td>
+                                <td>{{$data->member->nama_member}}</td>
+                                <td>{{$data->member->no_hp}}</td>
+                                <td>{{$data->created_at}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    @if ($data->status == '1')
+                                        <span class="badge badge-warning">Menunggu Pembayaran</span>
+                                    @elseif ($data->status == '2')
+                                        <span class="badge badge-info">Menunggu Konfirmasi</span>
+                                    @elseif ($data->status == '3')
+                                        <span class="badge badge-primary">Menunggu diambil</span>
+                                    @elseif ($data->status == '4')
+                                        <span class="badge badge-success">Selesai</span>
+                                    @elseif ($data->status == '5')
+                                        <span class="badge badge-danger">Dibatalkan</span>
+                                    @endif
+                                </td>
+                                <td>{{$data->ket_batal}}</td>
+                                <td>
+                                    @if ($data->metode_pembayaran == '1')
+                                        Transfer
+                                    @else($data->metode_pembayaran == '2')
+                                        Bayar Ditempat
+                                    @endif
+                                </td>
+                                    <td>
+                                        @if ($data->status == '2')
+                                        <a class="btn btn-outline-success btn-sm" href="/pemesanan_produk/konfirmasiPemesanan/{{$data->id_pp}}">
+                                            <i class="fas fa-check"></i>
+                                            Konfirmasi
+                                        </a>
+                                        <a class="btn btn-outline-danger btn-sm" href="/pemesanan_produk/batalPemesanan/{{$data->id_pp}}">
+                                            <i class="fas fa-ban"></i>
+                                            Dibatalkan
+                                        </a>
+                                        @elseif($data->status == 3)
+                                        <a class="btn btn-outline-success btn-sm" href="/pemesanan_produk/diambilPemesanan/{{$data->id_pp}}">
+                                            <i class="fas fa-check"></i>
+                                            Sudah Diambil
+                                        </a>
+                                        @endif
+                                        <a class="btn btn-outline-info" href="MengelolaDetailPemesanan{{$data->id_pemesanan}}">
+                                            <i class="fas fa-eye"></i>
+                                            Lihat Detail
+                                        </a>
+                                    </td>
+                                <td>
+                                    <button type="button" class="btn btn-warning" data-toggle="modal"
                                         data-target="#edit-data-{{$data->id_pp}}">
-                                        <i class="fas fa-check"></i>
+                                        <i class="fas fa-pencil-alt"></i>
                                     </button>
-                                    <form action="{{url('deletePemesanan_produk', $data->id_pp)}}" method="POST" class="d-inline">
+                                    <form action="{{url('/pemesanan_produk/hapusPemesanan', $data->id_pp)}}" method="POST" class="d-inline">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>
@@ -156,74 +127,56 @@
                 </div>
             </div>
         </div>
-
-        <!-- @foreach ($datas as $data)
-        {{-- Modal edit --}}
-        <div class="modal fade" id="edit-data-{{$data->id_produk}}" tabindex="-1" role="dialog"
+    {{-- Modal edit status--}}
+        <div class="modal fade" id="edit-data-{{$data->id_pp}}" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Edit Data Klinik</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Status Pemesanan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{url('editPemesanan_produk', $data->id_pp)}}" method="post">
+                    <form action="{{url('/pemesanan_produk/ubahStatus', $data->id_pp)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="nama_produk">Nama Produk</label>
-                                <input type="text" class="form-control" id="nama_produk" name="nama_produk"
-                                    value="{{$data->nama_produk}}" readonly>
+                                <label for="nama_member">Nama Member</label>
+                                <input type="text" class="form-control" id="nama_member" name="nama_member"
+                                    value="{{$data->member->nama_member}}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="jenis_produk">Jenis Produk</label>
-                                <input type="text" class="form-control" id="jenis_produk" name="jenis_produk" value="{{$data->jenis_produk}}">
+                                <label for="no_hp">No Hp</label>
+                                <input type="text" class="form-control" id="no_hp" name="no_hp" value="{{$data->member->no_hp}}" readonly>
                             </div>
 
                             <div class="form-group">
-                                <label for="harga_produk">Harga</label>
-                                <input type="text" class="form-control" id="harga_produk" name="harga_produk" value="{{$data->harga_produk}}">
+                                <label><b>Status</b></label>
+                                <div class="form-select">
+                                    <select name="status" class="form-control">
+                                        <option value="">Pilih Status</option>
+                                        <option value="1">1. Menunggu Pembayaran</option>
+                                        <option value="2">2. Menunggu Konfirmasi</option>
+                                        <option value="3">3. Menunggu Diambil</option>
+                                        <option value="4">4. Selesai</option>
+                                        <option value="5">5. Dibatalkan</option>
+                                        </select>
+                                </div>
+                                    @if ($errors->has('status'))
+                                    <span class="text-danger"><p class="text-right">* {{ $errors->first('status') }}</p></span>
+                                    @endif
                             </div>
-
-                            <div class="form-group">
-                                <label for="stok">Stok</label>
-                                <textarea class="form-control" id="stok" name="stok"
-                                    rows="2">{{$data->stok}}</textarea>
-                            </div>
-                            <label>Gambar</label><br>
-                            <img width="150px" src="{{ url('admin/image/gambar/'.$data->gambar) }}">
-                            <div class="custom-file"><br>
-                            <input type="file" name="gambar" id="gambar">
-                            <br><label class="text-primary" for="gambar">* Ukuran Maksimal 2 Mb<br>
-                            * Dikosongkan jika tidak dirubah</label>
-                             </div>
-                            @if ($errors->has('gambar'))
-                            <span class="text-danger"><p class="text-right">* {{ $errors->first('gambar') }}</p></span>
-                            @endif
-                            </div>
-
-                            <div class="form-group">
-                                <label for="klinik">Klinik</label>
-                                <select class="select2-single-placeholder form-control" name="klinik" id="klinik">
-                                    @foreach ($kliniks as $item)
-                                    <option value="{{$item->id_klinik}}">{{$item->nama_klinik}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Tutup</button>
+                            <button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-success">Simpan</button>
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
         </div> 
-    </form>
-    {{-- Akhir Modal Tambah --}} -->
-@endforeach
+    {{-- Akhir Modal Edit status--}}
 @endsection

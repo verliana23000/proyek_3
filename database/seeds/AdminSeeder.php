@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\AdminsModel;
+use App\AdminModel;
 class AdminSeeder extends Seeder
 {
     /**
@@ -11,12 +11,12 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        AdminsModel::create([
-        'nama'      =>'iis',
+        AdminModel::create([
+        'nama'      =>'verli',
     	'jk'        =>'Perempuan',
-    	'alamat'    =>'Plumbon', 
-    	'email'     =>'iisimut@gmail.com',
-    	'password'  =>Hash::make('iis123'),
+    	'alamat'    =>'Balongan', 
+    	'email'     =>'verli@gmail.com',
+    	'password'  =>bcrypt('12345678'),
         ]);
     }
 }
