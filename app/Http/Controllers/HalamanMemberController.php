@@ -19,4 +19,9 @@ class HalamanMemberController extends Controller
             $klinik	= KlinikModel::all();
             return view('home_member', compact('klinik'));
         }
+        public function keranjang(){
+            $keranjang	= KlinikModel::all();
+            return view('home_member', compact('klinik'));
+        }
+
 }

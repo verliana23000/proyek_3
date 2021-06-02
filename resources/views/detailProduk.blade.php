@@ -58,8 +58,19 @@
           <li><a class="nav-link scrollto active" href="{{'/home_member'}}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{url('/produk_member')}}">Produk</a></li>
           <li><a class="nav-link scrollto" href="{{url('/treatment_member')}}">Treatment</a></li>
+          <li><a class="fa fa-shopping-cart" href="{{url('keranjangProduk') }}"></a></li>
         </ul>
       </nav>
+
+      <div class="btn-group ms-4">
+        <button type="button" class="btn btn-outline-info py-1 px-3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        {{Session('nama_member')}}
+        </button>
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{{('/logoutMember')}}">Logout</a></li>
+        </ul>
+      </div>
+    </div>
     </div>
     <script type="text/javascript">
 
@@ -94,13 +105,19 @@
             <img src="" class="img-fluid" alt="">
           </div>
           <div class="col-md-5 mt-5">
-                <img src="{{ url('admin/img/gambar_produk/'.$produks->gambar_produk) }}" class="rounded mx-auto d-block" width="400">
+                <img src="{{ asset('/admin/img/gambar_produk/'.$produks->gambar) }}" class="rounded mx-auto d-block" width="400">
             </div>
 
           <div class="col-md-7 mt-5">
                 @if(\Session::has('alert'))
                     <div class="alert alert-danger" align="center">
                         <div>{{Session::get('alert')}}</div>
+                    </div>
+                @endif
+
+                @if(\Session::has('success'))
+                    <div class="alert alert-success" align="center">
+                        <div>{{Session::get('success')}}</div>
                     </div>
                 @endif
 
@@ -115,7 +132,7 @@
                             <td>{{$produks->nama_produk}}</td>
                         </tr>
                         <tr>
-                            <td><strong>Nama </strong></td>
+                            <td><strong>Nama Klinik</strong></td>
                             <td width="15px">:</td>
                             <td>{{$produks->klinik->nama_klinik}}</td>
                         </tr>
@@ -141,6 +158,7 @@
                             <td width="15px">:</td>
                             <td><input class="form-control" name="total" onfocus="startCalculate()" onblur="stopCalc()" readonly></td>
                         </tr>
+                        @if(Session('nama_member'))
                         <tr>
                             <td>
                             <a href="{{ url('home_member') }}" class="button-contactFrom btn_2"><i class="fas fa-arrow-left"></i> Kembali</a>
@@ -150,8 +168,18 @@
                                     Checkout</button>
                                 </td>
                             </td>
-
                         </tr>
+                        @else
+                        <tr>
+                            <td>
+                                <td width="15px"></td>
+                                <td>
+                                    <button class="btn btn-info" data-toggle="modal" data-target="#login">
+                                    Silahkan Login Terlebih Dahulu</button>
+                                </td>
+                            </td>
+                        </tr>
+                        @endif
                     </thead>
                 </form>
                 </table>

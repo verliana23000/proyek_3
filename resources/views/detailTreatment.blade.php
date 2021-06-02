@@ -49,13 +49,13 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="{{url('/home_member')}}">E-Beauty</a></h1>
+      <h1 class="logo me-auto"><a href="{{url('/')}}">E-Beauty</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="{{'/home_member'}}">Home</a></li>
+          <li><a class="nav-link scrollto active" href="{{'/'}}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{url('/produk_member')}}">Produk</a></li>
           <li><a class="nav-link scrollto" href="{{url('/treatment_member')}}">Treatment</a></li>
         </ul>
@@ -92,40 +92,50 @@
 
                 <h2>Pemesanan Treatment </h2>
                 <table class="table">
-                <form method="post" id="form1" name="form1" action="{{ url ('pesan') }}/{{ $treatments->id_tretment }}">
+                <form method="post" id="form1" name="form1" action="#">
                 {{csrf_field()}}
                     <thead>
+                    
                         <tr>
                             <td><strong>Nama Treatment</strong></td>
                             <td width="15px">:</td>
                             <td>{{$treatments->nama_treatment}}</td>
                         </tr>
-                    @foreach ($kliniks as $klinik)
                         <tr>
                             <td><strong>Nama Klinik</strong></td>
                             <td width="15px">:</td>
-                            <td>{{$klinik->nama_klinik}}</td>
+                            <td>{{$treatments->klinik->nama_klinik}}</td>
                         </tr>
-                    @endforeach
-
                         <tr>
                             <td><strong>Harga</strong> </td>
                             <td width="15px">:</td>
                             <td><input type="text" name="harga_treatment" class="form-control" value="{{$treatments->harga_treatment}}" onfocus="startCalculate()" onblur="stopCalc()" readonly></td>
                         </tr>
+                        @if(Session('nama_member'))
                         <tr>
                             <td>
                             <a href="{{ url('home_member') }}" class="button-contactFrom btn_2"><i class="fas fa-arrow-left"></i> Kembali</a>
                                 <td width="15px"></td>
                                 <td>
                                     <button class="btn btn-danger" data-toggle="modal" data-target="#login">
-                                    Bayar Sekarang</button>
+                                    Checkout</button>
                                 </td>
                             </td>
-
                         </tr>
+                @else
+                        
                     </thead>
                 </form>
+                        <tr>
+                            <td>
+                                <td width="15px"></td>
+                                <td>
+                                <button class="btn btn-outline-info py-1 px-3" data-bs-toggle="modal" data-bs-target="#login" >Silahkan Login Terlebih Dahulu</button>
+                                    
+                                </td>
+                            </td>
+                        </tr>
+                        @endif
                 </table>
             </div>
         </div>
@@ -135,7 +145,52 @@
 
       </div>
     </section><!-- End About Us Section -->
+  <!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">LOGIN </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
 
+      @if(\Session::has('alert'))
+                <div class="alert alert-danger">
+                    <div>{{Session::get('alert')}}</div>
+                </div>
+      @endif
+      @if(\Session::has('alert-success'))
+                <div class="alert alert-success">
+                    <div>{{Session::get('alert-success')}}</div>
+                </div>
+      @endif
+                <div class="modal-body">
+                  <form action="{{ url('/loginMemberPost') }}" method="post" class="form">
+                  {{ csrf_field() }}
+
+                  <div class="form-group input-rounded">
+                    <label>Email</label>
+                      <input type="email" class="form-control" placeholder="Masukkan Email" name="email" />
+                    </div><br>
+
+                    <div class="form-group input-rounded">
+                    <label> Password </label>
+                      <input type="password" class="form-control" placeholder="Masukkan Password" name="password" />
+                    </div><br>
+
+                    <div class="form-inline">
+                      <div class="btn">
+                        <label> Belum punya akun ? <a href="{{ url('daftar') }}">Buat Akun Baru</a>
+                        </label> 
+                      </div>
+                  </div>
+      
+        <input id="submit" type="submit" name="submit" value="LOGIN" />
+        </form>
+      
+    </div>
+  </div>
+</div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="js/jquery-3.3.1.min.js"></script>

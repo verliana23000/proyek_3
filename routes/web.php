@@ -109,12 +109,16 @@ Route::get('riwayat/{id_pp}', 'PemesananProdukController@riwayatDetail');
 //=============================== TreatMent========================================================
 Route::get('treatment_member', 'PemesananTreatmentController@tampilTreatment');
 Route::get('detailTreatment{id_treatment}', 'PemesananTreatmentController@tampilDetailTreatment');
-
+Route::get('/pemesananProduk', 'PemesananProdukController@tampilPemesananProduk');
 Route::get('/produk_member', 'PemesananProdukController@tampilProduk');
 Route::get('/detailProduk{id_produk}', 'PemesananProdukController@tampilDetailProduk');
+Route::post('/pesan/{id_produk}', 'PemesananProdukController@pesanProduk');
 Route::get('/treatment_member', 'PemesananTreatmentController@tampilTreatment');
 Route::get('/detailTreatment(id_treatment)', 'PemesananProdukController@tampilDetailTreatment');
 Route::post('/registerMemberPost', 'MemberController@registerMemberPost');
 Route::get('/logoutMember', 'MemberController@logoutMember');
-
+Route::get('/pemesanantreatment', 'PemesananTreatmentController@tampilPemesananTreatment');
+Route::get('Member/pemesananProduk', 'PemesananProdukController@tampilPemesananProduk');
 Route::get('/', 'HalamanMemberController@tampil');
+Route::get('/keranjangProduk', 'PemesananProdukController@Keranjang');
+Route::get('Member/PemesananTreatment(id_treatment)', 'detailPemesananTreatmentController@tampilPemesananTreatment');

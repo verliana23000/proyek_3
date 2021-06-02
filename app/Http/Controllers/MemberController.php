@@ -35,11 +35,11 @@ public function loginMemberPost  (Request $request){
 	} 
 	else {
 		
-		return view('/')->with('ERROR ! Email atau Password salah !');
+		return redirect('/')->with('ERROR ! Email atau Password salah !');
 	}
 }
 	else {
-		return view('/')->with('ERROR ! Email atau Password salah !');
+		return redirect('/')->with('ERROR ! Email atau Password salah !');
 		
 	}
 }

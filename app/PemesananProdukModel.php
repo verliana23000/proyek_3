@@ -15,5 +15,8 @@ class PemesananProdukModel extends Model
     'ket_batal'
     ]; //field 
 
+    public function detailpp(){
+      return $this->hasMany(DetailPemesananProdukModel::class,'id_pp');
+  }
     
 }

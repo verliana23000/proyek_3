@@ -58,6 +58,8 @@
           <li><a class="nav-link scrollto" href="{{'/'}}">Home</a></li>
           <li><a class="nav-link scrollto active" href="{{url('/produk_member')}}">Produk</a></li>
           <li><a class="nav-link scrollto" href="{{url('/treatment_member')}}">Treatment</a></li>
+          <li><a class="fa fa-shopping-cart" href="{{url('keranjangProduk') }}"></a></li>
+
                
         </ul>
       </nav><!-- .navbar -->

@@ -88,14 +88,15 @@
                     @endforeach<br>
                     <span style="color: green">Rp. {{$treatment->harga_treatment}}</span> <br>
                 <center>
-                        <a href="{{url('/DetailPemesananTreatment'.$treatment->id_treatment)}}" class="btn btn-outline-success py-1 px-3" >
+
+                        <a href="{{url('/detailTreatment'.$treatment->id_treatment)}}" class="btn btn-outline-success py-1 px-3" >
                         Pesan Sekarang</a>
                 </center>
               </p>
             </div>
         </div>
             @endforeach
-
+          
           </div>
         </div>
       </div>
